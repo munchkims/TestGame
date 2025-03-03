@@ -1,13 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://du2ixcgw3jomt"]
+[gd_scene load_steps=5 format=3 uid="uid://du2ixcgw3jomt"]
 
+[ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_0gyf0"]
 [ext_resource type="PackedScene" uid="uid://kn6qje82vj1h" path="res://Scenes/game_world.tscn" id="1_r341e"]
 [ext_resource type="PackedScene" uid="uid://dejbr58ec27np" path="res://Scenes/player.tscn" id="2_0613k"]
+[ext_resource type="PackedScene" uid="uid://bph0s7b2cky5" path="res://Scenes/reusable/door.tscn" id="3_0jlvj"]
 
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_0gyf0")
 
 [node name="GameWorld" parent="." instance=ExtResource("1_r341e")]
 
 [node name="Player" parent="." instance=ExtResource("2_0613k")]
 position = Vector2(449, 237)
-char_speed = 50.0
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="door_main_L" parent="Doors" instance=ExtResource("3_0jlvj")]
+target_scene = "res://Scenes/houses/left_house.tscn"
+target_door = "left"
+
+[node name="SpawnPoint" parent="Doors/door_main_L" index="0"]
+position = Vector2(0, 29)
+scale = Vector2(1, 121.471)
+
+[editable path="Doors/door_main_L"]

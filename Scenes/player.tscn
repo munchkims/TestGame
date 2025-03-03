@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dejbr58ec27np"]
+[gd_scene load_steps=23 format=3 uid="uid://dejbr58ec27np"]
 
 [ext_resource type="Texture2D" uid="uid://bkh2xv84pfflg" path="res://Art/Spritesheets/Basic Charakter Spritesheet.png" id="1_7tbtl"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_h3awm"]
+[ext_resource type="Script" path="res://Scripts/player_movement.gd" id="2_2jti8"]
+[ext_resource type="Script" path="res://Scripts/player_stats.gd" id="4_6pmsv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxvv"]
 size = Vector2(12, 6)
@@ -81,7 +83,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 1.5
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -92,7 +94,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_left",
-"speed": 1.5
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -103,7 +105,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_right",
-"speed": 1.5
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -114,7 +116,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 1.5
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -161,21 +163,28 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_h3awm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerMovement" type="CharacterBody2D" parent="."]
+script = ExtResource("2_2jti8")
+char_speed = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovement"]
 y_sort_enabled = true
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_fhxvv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerMovement"]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_abw2k")
 animation = &"idle_down"
-frame_progress = 0.621998
+frame_progress = 0.208932
 offset = Vector2(0, -8)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+[node name="Camera2D" type="Camera2D" parent="PlayerMovement"]
+zoom = Vector2(2, 2)
+
+[node name="PlayerStats" type="Node2D" parent="."]
+script = ExtResource("4_6pmsv")

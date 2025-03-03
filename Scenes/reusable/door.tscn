@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bph0s7b2cky5"]
+
+[ext_resource type="Texture2D" uid="uid://b6ddboplvo2tr" path="res://Art/Tile Maps/Doors.png" id="1_vi33w"]
+[ext_resource type="Script" path="res://Scripts/reusable/door.gd" id="2_ihk5n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygacu"]
+size = Vector2(18, 11)
+
+[node name="door" type="Sprite2D"]
+position = Vector2(184, 168)
+texture = ExtResource("1_vi33w")
+vframes = 4
+frame = 1
+script = ExtResource("2_ihk5n")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, 19)
+
+[node name="DoorTransition" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTransition"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_ygacu")
+
+[connection signal="body_entered" from="DoorTransition" to="." method="_on_body_entered"]
