@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://du2ixcgw3jomt"]
+
+[ext_resource type="PackedScene" uid="uid://kn6qje82vj1h" path="res://Scenes/game_world.tscn" id="1_r341e"]
+[ext_resource type="PackedScene" uid="uid://dejbr58ec27np" path="res://Scenes/player.tscn" id="2_0613k"]
+
+[node name="MainGame" type="Node2D"]
+y_sort_enabled = true
+
+[node name="GameWorld" parent="." instance=ExtResource("1_r341e")]
+
+[node name="Player" parent="." instance=ExtResource("2_0613k")]
+position = Vector2(449, 237)
+char_speed = 50.0
