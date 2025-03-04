@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhpjmacol8u2v"]
+
+[ext_resource type="Texture2D" uid="uid://doafri76h47sx" path="res://Art/UI/action_button_normal.png" id="1_irprq"]
+[ext_resource type="Texture2D" uid="uid://dh4kr3e2vrun6" path="res://Art/UI/action_button_pressed.png" id="2_tibdh"]
+[ext_resource type="Script" path="res://Scripts/UI/action_button.gd" id="3_d5dxi"]
+
+[node name="ActionButton" type="TextureButton"]
+texture_normal = ExtResource("1_irprq")
+texture_pressed = ExtResource("2_tibdh")
+texture_disabled = ExtResource("2_tibdh")
+script = ExtResource("3_d5dxi")
+
+[node name="ActionName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = -4.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.214124, 0.0803385, 0.0186228, 1)
+theme_override_font_sizes/font_size = 14
+text = "Action name"

@@ -48,6 +48,18 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 7
 
+[node name="ButtonContainer" type="VBoxContainer" parent="BG/ButtonsBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="InfoBG" type="NinePatchRect" parent="BG"]
 layout_mode = 1
 anchors_preset = 2
@@ -88,7 +100,7 @@ offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 12
-text = "Item Name"
+text = "Пусто"
 
 [node name="ItemDescBg" type="NinePatchRect" parent="BG/InfoBG"]
 layout_mode = 1
@@ -119,7 +131,7 @@ offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
-text = "Item Description"
+text = "Пустая ячейка"
 
 [node name="Pointer" type="TextureRect" parent="BG"]
 visible = false
