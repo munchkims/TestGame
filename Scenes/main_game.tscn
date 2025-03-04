@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://du2ixcgw3jomt"]
+[gd_scene load_steps=6 format=3 uid="uid://du2ixcgw3jomt"]
 
 [ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_0gyf0"]
 [ext_resource type="PackedScene" uid="uid://kn6qje82vj1h" path="res://Scenes/game_world.tscn" id="1_r341e"]
 [ext_resource type="PackedScene" uid="uid://dejbr58ec27np" path="res://Scenes/player.tscn" id="2_0613k"]
 [ext_resource type="PackedScene" uid="uid://bph0s7b2cky5" path="res://Scenes/reusable/door.tscn" id="3_0jlvj"]
+[ext_resource type="PackedScene" uid="uid://cd4q20ww7dpva" path="res://Scenes/reusable/inventory_item.tscn" id="5_12s2r"]
 
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
@@ -23,5 +24,39 @@ target_door = "left"
 [node name="SpawnPoint" parent="Doors/door_main_L" index="0"]
 position = Vector2(0, 29)
 scale = Vector2(1, 121.471)
+
+[node name="Pickables" type="Node2D" parent="."]
+
+[node name="InventoryItem" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(263, 240)
+item_id = "amulet"
+
+[node name="InventoryItem2" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(368, 314)
+item_id = "apple"
+
+[node name="InventoryItem3" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(235, 298)
+item_id = "orange"
+
+[node name="InventoryItem4" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(375, 277)
+item_id = "teleport"
+
+[node name="InventoryItem5" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(444, 282)
+item_id = "token"
+
+[node name="InventoryItem6" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(704, 273)
+item_id = "signalisation"
+
+[node name="InventoryItem7" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(70, 251)
+item_id = "chili"
+
+[node name="InventoryItem8" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(111, 317)
+item_id = "olives"
 
 [editable path="Doors/door_main_L"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dejbr58ec27np"]
+[gd_scene load_steps=24 format=3 uid="uid://dejbr58ec27np"]
 
 [ext_resource type="Texture2D" uid="uid://bkh2xv84pfflg" path="res://Art/Spritesheets/Basic Charakter Spritesheet.png" id="1_7tbtl"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_h3awm"]
 [ext_resource type="Script" path="res://Scripts/player_movement.gd" id="2_2jti8"]
 [ext_resource type="Script" path="res://Scripts/player_stats.gd" id="4_6pmsv"]
+[ext_resource type="Script" path="res://Scripts/reusable/item_storage.gd" id="5_aovf8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxvv"]
 size = Vector2(12, 6)
@@ -188,3 +189,6 @@ zoom = Vector2(2, 2)
 
 [node name="PlayerStats" type="Node2D" parent="."]
 script = ExtResource("4_6pmsv")
+
+[node name="PlayerInventory" type="Node2D" parent="."]
+script = ExtResource("5_aovf8")
