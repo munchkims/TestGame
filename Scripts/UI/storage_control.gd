@@ -9,7 +9,6 @@ const BUTTON_SCENE: Resource = preload("res://Scenes/UI/action_button.tscn")
 @onready var slot_container: GridContainer = $BG/SlotContainer
 @onready var button_container: VBoxContainer = $BG/ButtonsBG/ButtonContainer
 @onready var pointer: TextureRect = $BG/Pointer
-# @onready var slots: Array = slot_container.get_children()
 
 enum SelectionState {INVENTORY, BUTTONS}
 var selection_state: SelectionState = SelectionState.INVENTORY

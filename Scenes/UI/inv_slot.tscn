@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4cvkhufew22"]
 
 [ext_resource type="Texture2D" uid="uid://diwmxb66aoo0w" path="res://Art/UI/UI-slot.png" id="1_uwqn0"]
-[ext_resource type="Script" path="res://Scenes/UI/inv_slot.gd" id="2_usdle"]
+[ext_resource type="Script" path="res://Scripts/UI/inv_slot.gd" id="2_usdle"]
 
 [node name="inv_slot" type="TextureRect"]
 texture = ExtResource("1_uwqn0")
