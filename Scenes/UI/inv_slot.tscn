@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4cvkhufew22"]
+[gd_scene load_steps=3 format=3 uid="uid://d4cvkhufew22"]
 
 [ext_resource type="Texture2D" uid="uid://diwmxb66aoo0w" path="res://Art/UI/UI-slot.png" id="1_uwqn0"]
+[ext_resource type="Script" path="res://Scenes/UI/inv_slot.gd" id="2_usdle"]
 
 [node name="inv_slot" type="TextureRect"]
 texture = ExtResource("1_uwqn0")
+script = ExtResource("2_usdle")
+
+[node name="ItemPic" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2

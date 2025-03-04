@@ -1,22 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4tuu17yqqfl6"]
 
-[ext_resource type="Texture2D" uid="uid://ccapawpy6k0si" path="res://Art/UI/UI-bg.png" id="1_idgnd"]
-[ext_resource type="PackedScene" uid="uid://d4cvkhufew22" path="res://Scenes/UI/inv_slot.tscn" id="2_2hpqw"]
-[ext_resource type="Texture2D" uid="uid://b3ra86d7ke1ab" path="res://Art/UI/Catpaw pointing Mouse icon.png" id="3_x7eyc"]
+[ext_resource type="Script" path="res://Scripts/UI/storage_control.gd" id="1_1tkpo"]
+[ext_resource type="Texture2D" uid="uid://ccapawpy6k0si" path="res://Art/UI/UI-bg.png" id="2_w3dq4"]
+[ext_resource type="Texture2D" uid="uid://b3ra86d7ke1ab" path="res://Art/UI/Catpaw pointing Mouse icon.png" id="4_2y4f3"]
 
-[node name="Inv_Control" type="Control"]
+[node name="Storage_Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1tkpo")
 
 [node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_right = 317.0
 offset_bottom = 216.0
-texture = ExtResource("1_idgnd")
+texture = ExtResource("2_w3dq4")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
@@ -30,12 +31,6 @@ offset_right = 311.0
 offset_bottom = 146.0
 columns = 9
 
-[node name="inv_slot" parent="BG/SlotContainer" instance=ExtResource("2_2hpqw")]
-layout_mode = 2
-
-[node name="inv_slot2" parent="BG/SlotContainer" instance=ExtResource("2_2hpqw")]
-layout_mode = 2
-
 [node name="ButtonsBG" type="NinePatchRect" parent="BG"]
 layout_mode = 1
 anchors_preset = 3
@@ -47,7 +42,7 @@ offset_left = -143.0
 offset_top = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("1_idgnd")
+texture = ExtResource("2_w3dq4")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
@@ -61,7 +56,7 @@ anchor_bottom = 1.0
 offset_top = -66.0
 offset_right = 174.0
 grow_vertical = 0
-texture = ExtResource("1_idgnd")
+texture = ExtResource("2_w3dq4")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
@@ -76,7 +71,7 @@ offset_top = 3.0
 offset_right = -5.0
 offset_bottom = 24.0
 grow_horizontal = 2
-texture = ExtResource("1_idgnd")
+texture = ExtResource("2_w3dq4")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
@@ -107,7 +102,7 @@ offset_right = -5.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("1_idgnd")
+texture = ExtResource("2_w3dq4")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
@@ -133,4 +128,4 @@ offset_left = 23.0
 offset_top = 25.0
 offset_right = 39.0
 offset_bottom = 41.0
-texture = ExtResource("3_x7eyc")
+texture = ExtResource("4_2y4f3")

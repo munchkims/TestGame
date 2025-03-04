@@ -10,6 +10,7 @@ func has_key() -> bool:
 func add_key() -> void:
 	pass
 
+
 func add_item(item: Item) -> bool:
 	if player_inventory.add_item(item):
 		return true

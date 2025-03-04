@@ -10,7 +10,7 @@ var item_data: Item = null
 var picked_up: bool = false
 
 func _ready() -> void:
-	item_data = ItemDb.get_item(item_id)
+	item_data = ItemDb.get_item(item_id).duplicate() # In case we have several apples and such
 	if item_data:
 		texture = item_data.item_sprite
 	else:

@@ -29,7 +29,7 @@ scale = Vector2(1, 121.471)
 
 [node name="InventoryItem" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(263, 240)
-item_id = "amulet"
+item_id = "apple"
 
 [node name="InventoryItem2" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(368, 314)
@@ -37,7 +37,7 @@ item_id = "apple"
 
 [node name="InventoryItem3" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(235, 298)
-item_id = "orange"
+item_id = "apple"
 
 [node name="InventoryItem4" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(375, 277)

@@ -6,9 +6,9 @@ class_name ItemStorage
 var capacity: int
 var storage: Array = []
 
-# func _init(storage_capacity: int) -> void:
-#     capacity = storage_capacity
-#     storage.resize(capacity)
+signal storage_resized
+signal item_added(item: Item)
+signal item_removed(item: Item)
 
 
 func _ready() -> void:
@@ -25,21 +25,36 @@ func add_item(item: Item) -> bool:
 	var index: int = storage.find(null)
 	storage[index] = item
 	print("added: ", item.item_name)
+	item_added.emit(item)
 	return true
 
 
-func remove_item(index: int) -> Item:
-	if index >= 0 and index < storage.size():
-		if storage[index] == null:
-			return null
+func remove_item(item: Item) -> Item:
+	var index: int = storage.find(item)
+	if index != 1:
 		var removed_item: Item = storage[index]
 		storage.remove_at(index)
 		storage.append(null)
+		item_removed.emit(removed_item)
 		return removed_item
 	else:
-		printerr("index is out of bounds.")
+		printerr("the item to remove was not found.")
 		return null
+
+	# if index >= 0 and index < storage.size():
+	# 	if storage[index] == null:
+	# 		return null
+	# 	var removed_item: Item = storage[index]
+	# 	storage.remove_at(index)
+	# 	storage.append(null)
+	# 	item_removed.emit(removed_item)
+	# 	return removed_item
+	# else:
+	# 	printerr("index is out of bounds.")
+	# 	return null
 
 
 func resize_storage(new_capacity: int) -> void:
-	storage.resize(new_capacity)
+	capacity = new_capacity
+	storage.resize(capacity)
+	storage_resized.emit()
