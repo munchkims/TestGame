@@ -39,3 +39,6 @@ func load_items() -> void:
 
 func get_item(item_id: String) -> Item:
     return items.get(item_id, null)
+
+
+# Список функций, такой же как id предмета

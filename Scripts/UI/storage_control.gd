@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
 			_select_button()
 		elif event.is_action_pressed("ui_accept"):
-			action_buttons[selected_button_index].pressed = true
+			action_buttons[selected_button_index].emit_signal("pressed")
 		elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("Tab"):
 			_exit_button_selection()
 
@@ -122,7 +122,10 @@ func get_selected_item() -> Item:
 
 
 func _on_item_added(new_item: Item) -> void:
-	var index: int = slots.find(func(slot: TextureRect) -> int: return slot.item == null)
+	var index: int = _find_null_slot()
+	if index == -1:
+		printerr("Some inventory mismatch. Tried adding more items than there is capacity")
+		return
 	var slot_to_upd: TextureRect = slots[index]
 	slot_to_upd.set_item(new_item)
 
@@ -135,6 +138,14 @@ func _on_item_removed(removed_item: Item) -> void:
 			slots[i].set_item(slots[i + 1].item)
 		
 		slots[slots.size() - 1].reset()
+
+
+func _find_null_slot() -> int:
+	for i in range(slots.size()):
+		if slots[i].item == null:
+			return i
+	
+	return -1
 
 
 func resize() -> void:

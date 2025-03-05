@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/UI/inv_slot.gd" id="2_usdle"]
 
 [node name="inv_slot" type="TextureRect"]
+offset_right = 30.0
+offset_bottom = 32.0
 texture = ExtResource("1_uwqn0")
 script = ExtResource("2_usdle")
 
