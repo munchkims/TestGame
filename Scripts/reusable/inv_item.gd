@@ -6,11 +6,20 @@ class_name InventoryItem
 
 @onready var pickable_area: PickableItem = $PickableItem
 var item_data: Item = null
+var duplicate_item: Item
 
 var picked_up: bool = false
 
 func _ready() -> void:
 	item_data = ItemDb.get_item(item_id) # In case we have several apples and such
+	
+	duplicate_item = Item.new()
+	duplicate_item.item_id = item_data.item_id
+	duplicate_item.item_name = item_data.item_name
+	duplicate_item.description = item_data.description
+	duplicate_item.item_sprite = item_data.item_sprite
+	duplicate_item.set_use_func(GlobalManager.item_function(duplicate_item.item_id))
+	
 	if item_data:
 		texture = item_data.item_sprite
 	else:
@@ -20,7 +29,7 @@ func _ready() -> void:
 
 
 func _on_player_entered(player: Player) -> void:
-	if player.add_item(item_data):
+	if player.add_item(duplicate_item):
 		picked_up = true
 		# TODO saving because this bool means nothing if we delete the scene
 		queue_free()

@@ -26,17 +26,17 @@ func add_item(item: Item) -> bool:
 	storage[index] = item
 	print("added: ", item.item_name)
 	item_added.emit(item)
-	print(storage)
 	return true
 
 
 func remove_item(item: Item) -> Item:
 	var index: int = storage.find(item)
-	if index != 1:
+	if index != -1:
 		var removed_item: Item = storage[index]
 		storage.remove_at(index)
 		storage.append(null)
 		item_removed.emit(removed_item)
+		print(removed_item)
 		return removed_item
 	else:
 		printerr("the item to remove was not found.")

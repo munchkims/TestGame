@@ -5,7 +5,6 @@ class_name ActionButton
 
 func set_action(new_name: String) -> void:
 	action_name.text = new_name
-	pass
 
 
 func disable() -> void:
