@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://du2ixcgw3jomt"]
+[gd_scene load_steps=8 format=3 uid="uid://du2ixcgw3jomt"]
 
 [ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_0gyf0"]
 [ext_resource type="PackedScene" uid="uid://kn6qje82vj1h" path="res://Scenes/game_world.tscn" id="1_r341e"]
@@ -9,9 +9,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0m6a"]
 radius = 12.0416
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr24k"]
-size = Vector2(61, 57)
 
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
@@ -120,20 +117,11 @@ shape = SubResource("CircleShape2D_n0m6a")
 [node name="Interactable2" type="Area2D" parent="Interactables"]
 position = Vector2(256, 3)
 script = ExtResource("6_k87mt")
-interaction_line = "Яблоня. Ням-ням."
+interaction_line = "Яблоня. Аж яблочко захотелось."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Interactable2"]
 position = Vector2(312, 243)
 shape = SubResource("CircleShape2D_n0m6a")
-
-[node name="Interactable3" type="Area2D" parent="Interactables"]
-position = Vector2(-123, -2)
-script = ExtResource("6_k87mt")
-interaction_line = "Какие красивые подсолнухи!"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Interactable3"]
-position = Vector2(315.5, 235.5)
-shape = SubResource("RectangleShape2D_fr24k")
 
 [editable path="Doors/door_main_L"]
 [editable path="Doors/door_main_L2"]

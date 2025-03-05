@@ -79,9 +79,7 @@ func _cast_ray() -> void:
 func is_near_interactable() -> String:
 	if raycast.is_colliding():
 		var collider: Object = raycast.get_collider()
-		print(collider)
 		if collider is Interactable:
-			print("i am interactable")
 			return collider.message()
 	
 	return ""

@@ -1,9 +1,9 @@
 extends Node
 
+var player: Player
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	player = _fetch_player()
 
 
 # Получаем функцию, используя id предмета
@@ -15,14 +15,22 @@ func item_function(item_name: String) -> Callable:
 		return Callable()
 
 
+func _fetch_player() -> Player:
+	var main_game: Node = get_tree().get_root().get_node("MainGame")
+	if main_game:
+		return main_game.get_node_or_null("Player")
+	return null
+
+
 # Список функций, такой же как id предмета
 
 func apple() -> void:
-	print("apple was used!")
+	player.change_current_health(1)
 
 
 func orange() -> void:
-	print("orange was used!")
+	player.change_max_health(1)
+	player.change_current_health(1)
 
 
 func chili() -> void:

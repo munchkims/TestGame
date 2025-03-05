@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dejbr58ec27np"]
+[gd_scene load_steps=27 format=3 uid="uid://dejbr58ec27np"]
 
 [ext_resource type="Texture2D" uid="uid://bkh2xv84pfflg" path="res://Art/Spritesheets/Basic Charakter Spritesheet.png" id="1_7tbtl"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_h3awm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/player_stats.gd" id="4_6pmsv"]
 [ext_resource type="Script" path="res://Scripts/reusable/item_storage.gd" id="5_aovf8"]
 [ext_resource type="PackedScene" uid="uid://bqtkrihai4kf6" path="res://Scenes/UI/player_inventory.tscn" id="6_quvdh"]
+[ext_resource type="Script" path="res://Scripts/health_component.gd" id="6_vwrky"]
 [ext_resource type="PackedScene" uid="uid://cy2o558icttjk" path="res://Scenes/UI/main_hud.tscn" id="7_eacli"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxvv"]
@@ -201,6 +202,9 @@ script = ExtResource("4_6pmsv")
 
 [node name="PlayerStorage" type="Node2D" parent="."]
 script = ExtResource("5_aovf8")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("6_vwrky")
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
