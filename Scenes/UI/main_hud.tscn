@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy2o558icttjk"]
+
+[ext_resource type="Script" path="res://Scripts/UI/main_hud.gd" id="1_o1uk3"]
+[ext_resource type="Texture2D" uid="uid://doafri76h47sx" path="res://Art/UI/action_button_normal.png" id="1_tsk6c"]
+[ext_resource type="Texture2D" uid="uid://diwmxb66aoo0w" path="res://Art/UI/UI-slot.png" id="2_3cmrg"]
+
+[node name="MainHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1uk3")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 116.0
+offset_bottom = 59.0
+texture = ExtResource("1_tsk6c")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 60.0
+offset_bottom = 45.0
+theme_override_constants/separation = -1
+
+[node name="HPText" type="Label" parent="BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+theme_override_font_sizes/font_size = 15
+text = "HP"
+vertical_alignment = 1
+
+[node name="HPNumber" type="Label" parent="BG/VBoxContainer/HPText"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 35.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+theme_override_font_sizes/font_size = 15
+text = "99/99"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="KeysText" type="Label" parent="BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+theme_override_font_sizes/font_size = 15
+text = "Ключи:"
+vertical_alignment = 1
+
+[node name="KeyNumber" type="Label" parent="BG/VBoxContainer/KeysText"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -11.0
+offset_right = 35.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+theme_override_font_sizes/font_size = 15
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextPopUp" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 137.0
+offset_top = -50.0
+offset_right = -137.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_3cmrg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="TextPopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+text = "Some text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

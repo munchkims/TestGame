@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 @export var char_speed: float = 50.0
+@export var ray_length: int = 15
 
 @onready var char_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var raycast: RayCast2D = $RayCast2D
 
 
 var direction: Vector2 = Vector2.ZERO
@@ -15,6 +17,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move(delta)
+	_cast_ray()
 	if set_state() or set_direction():
 		animate()
 
@@ -67,3 +70,18 @@ func anim_dir() -> String:
 		_:
 			printerr("no direction found.")
 			return ""
+
+
+func _cast_ray() -> void:
+	raycast.target_position = cardinal_direction.normalized() * ray_length
+
+
+func is_near_interactable() -> String:
+	if raycast.is_colliding():
+		var collider: Object = raycast.get_collider()
+		print(collider)
+		if collider is Interactable:
+			print("i am interactable")
+			return collider.message()
+	
+	return ""
