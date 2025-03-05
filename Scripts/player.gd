@@ -8,6 +8,8 @@ class_name Player
 @onready var player_movement: CharacterBody2D = $PlayerMovement
 @onready var health_component: HealthComponent = $HealthComponent
 
+signal player_dead
+
 
 func _ready() -> void:
 	player_storage_control.create_player_inventory(player_storage)
@@ -52,5 +54,7 @@ func change_max_health(amount: int) -> void:
 	health_component.change_max_health(amount)
 
 
+# Возможно, конечно, перезагрузку вручную
 func _on_health_depleted() -> void:
-	pass
+	print("you die!")
+	player_dead.emit()

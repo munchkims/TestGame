@@ -35,3 +35,9 @@ func _on_animation_finished(animation: String, target_scene: PackedScene, target
 		anim_player.animation_finished.disconnect(on_finished)
 		on_finished = Callable()
 		in_transition = false
+
+
+func reset() -> void:
+	saved_player = null
+	saved_door = ""
+	in_transition = false

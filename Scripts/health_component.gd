@@ -23,4 +23,7 @@ func change_max_health(amount: int) -> void:
     if max_health <= 0:
         max_health = 0
         health_depleted.emit()
+    if max_health < current_health:
+        current_health = max_health
+        health_changed.emit(current_health, false)
     health_changed.emit(max_health, true)
