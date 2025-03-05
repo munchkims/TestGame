@@ -1,8 +1,18 @@
+@tool
 extends Sprite2D
 class_name InventoryItem
 
-# Note: this item ID should be identical to the one in the JSON file (res://Data/ItemData.json)
+# NB: item ID должен быть идентичен тому, что в файле JSON (res://Data/ItemData.json)
 @export var item_id: String = ""
+
+# UUID для сохранения
+@export var uuid: String = ""
+
+@export var generate_uuid: bool = false:
+	set(value):
+		if value:
+			generate_new_uuid()
+		generate_uuid = false
 
 @onready var pickable_area: PickableItem = $PickableItem
 var item_data: Item = null
@@ -11,17 +21,27 @@ var duplicate_item: Item
 var picked_up: bool = false
 
 func _ready() -> void:
-	item_data = ItemDb.get_item(item_id) # In case we have several apples and such
+	if Engine.is_editor_hint(): # Иначе прокается из-за @tool
+		return
 	
-	duplicate_item = Item.new()
-	duplicate_item.item_id = item_data.item_id
-	duplicate_item.item_name = item_data.item_name
-	duplicate_item.description = item_data.description
-	duplicate_item.item_sprite = item_data.item_sprite
-	duplicate_item.set_use_func(GlobalManager.item_function(duplicate_item.item_id))
+	if DataPersistence.is_picked_up(uuid):
+		load_info()
+		return
+	item_data = ItemDb.get_item(item_id)
+	
+	# Годот что-то странно дублировал с помощью duplicate() - даже с true, поэтому было принято решение делать отдельную копию.
+	# Вообще я бы поменяла item_storage на Словарь (Dictionary), чтобы не дублировать и просто сделить за количеством вещей, но в силу ограниченных сроков понимаю, что не успею
 	
 	if item_data:
 		texture = item_data.item_sprite
+		duplicate_item = Item.new()
+		duplicate_item.item_id = item_data.item_id
+		duplicate_item.item_name = item_data.item_name
+		duplicate_item.description = item_data.description
+		duplicate_item.item_sprite = item_data.item_sprite
+		duplicate_item.set_use_func(GlobalManager.item_function(duplicate_item.item_id))
+		duplicate_item.is_usable = item_data.is_usable
+		duplicate_item.is_reusable = item_data.is_reusable
 	else:
 		printerr("data not found. Are you sure you used a correct id?")
 	
@@ -31,14 +51,26 @@ func _ready() -> void:
 func _on_player_entered(player: Player) -> void:
 	if player.add_item(duplicate_item):
 		picked_up = true
-		# TODO saving because this bool means nothing if we delete the scene
 		queue_free()
 	else:
 		return
 
-func load() -> void:
-	pass
+func load_info() -> void:
+	picked_up = true
+	queue_free()
 
 
 func save() -> void:
-	pass
+	DataPersistence.register_item(uuid, picked_up)
+
+
+# Теперь когда мы удаляем предмет, он сам и его статус сохраняется
+func _exit_tree() -> void:
+	save()
+
+
+# Так как в GODOT нет build-in функции для генерации UUID, это временное решение чисто для тестового задания (а так можно либо самим написать, либо использовать плагин) 
+func generate_new_uuid() -> void:
+	uuid = str(get_instance_id())
+	notify_property_list_changed()
+	print("Generated UUID: ", uuid)

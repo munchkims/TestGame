@@ -9,23 +9,41 @@ var loaded_scene: PackedScene
 var is_open: bool = false
 @onready var door_transition: Area2D = $DoorTransition
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	loaded_scene = load(target_scene) as PackedScene
 	
 	if inside_door:
-		is_open = true
-		self_modulate.a = 0
+		open()
 	else:
 		load_info()
 
 
 func load_info() -> void:
-	is_open = false
+	if DataPersistence.is_door_open(get_path()):
+		open()
 
 
 func _on_body_entered(body: Node2D) -> void:
 	var parent: Node2D = body.get_parent()
 	if parent is Player:
-		if is_open or parent.has_key():
+		if is_open:
 			SceneTransitionManager.change_scene(loaded_scene, target_door)
+		elif parent.has_key():
+			print("popup to ask")
+			open()
+			DataPersistence.save_open_door(get_path())
+			SceneTransitionManager.change_scene(loaded_scene, target_door)
+		else:
+			return
+
+
+func open() -> void:
+	is_open = true
+	self_modulate.a = 0
+
+
+func close() -> void:
+	is_open = false
+	DataPersistence.remove_open_door(get_path())
+	self_modulate.a = 1

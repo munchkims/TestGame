@@ -45,7 +45,6 @@ func add_buttons(btn_name: String, btn_func: Callable) -> ActionButton:
 
 func _on_use_button_pressed() -> void:
 	var selected_item: Item = player_inventory.get_selected_item()
-	print(selected_item)
 	if selected_item == null:
 		return
 	selected_item.use_func.call()

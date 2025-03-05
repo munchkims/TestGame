@@ -135,15 +135,10 @@ func _on_item_added(new_item: Item) -> void:
 		return
 	var slot_to_upd: TextureRect = slots[index]
 	slot_to_upd.set_item(new_item)
-	print("item added: ", new_item)
 
 
 func _on_item_removed(removed_item: Item) -> void:
-	var index: int = -1
-	for i in range(slots.size()):
-		if slots[i].item == removed_item:
-			index = i
-	print(index)
+	var index: int = _find_slot_by_item(removed_item)
 	if index != -1:
 		# var del_slot: TextureRect = slots[index]
 		# slots.remove_at(index)
@@ -169,6 +164,13 @@ func _find_null_slot() -> int:
 		if slots[i].item == null:
 			return i
 	
+	return -1
+
+
+func _find_slot_by_item(ref_item: Item) -> int:
+	for i in range(slots.size()):
+		if slots[i].item == ref_item:
+			return i
 	return -1
 
 

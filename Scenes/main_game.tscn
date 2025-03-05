@@ -25,38 +25,81 @@ target_door = "left"
 position = Vector2(0, 29)
 scale = Vector2(1, 121.471)
 
+[node name="door_main_L2" parent="Doors" instance=ExtResource("3_0jlvj")]
+position = Vector2(424, 168)
+target_scene = "res://Scenes/houses/left_house.tscn"
+target_door = "left"
+
+[node name="SpawnPoint" parent="Doors/door_main_L2" index="0"]
+position = Vector2(0, 29)
+scale = Vector2(1, 121.471)
+
+[node name="door_main_L3" parent="Doors" instance=ExtResource("3_0jlvj")]
+position = Vector2(696, 168)
+target_scene = "res://Scenes/houses/left_house.tscn"
+target_door = "left"
+
+[node name="SpawnPoint" parent="Doors/door_main_L3" index="0"]
+position = Vector2(0, 29)
+scale = Vector2(1, 121.471)
+
 [node name="Pickables" type="Node2D" parent="."]
 
 [node name="InventoryItem" parent="Pickables" instance=ExtResource("5_12s2r")]
-position = Vector2(263, 240)
+position = Vector2(280, 238)
 item_id = "apple"
+uuid = "8138862424493"
+
+[node name="InventoryItem9" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(553, 257)
+item_id = "apple"
+uuid = "8138912758092"
+
+[node name="InventoryItem10" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(322, 228)
+item_id = "apple"
+uuid = "8138963088088"
 
 [node name="InventoryItem2" parent="Pickables" instance=ExtResource("5_12s2r")]
-position = Vector2(368, 314)
-item_id = "apple"
+position = Vector2(302, 160)
+item_id = "orange"
+uuid = "8139013421226"
+
+[node name="InventoryItem11" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(607, 316)
+item_id = "orange"
+uuid = "8139063752240"
 
 [node name="InventoryItem3" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(235, 298)
-item_id = "apple"
+item_id = "chili"
+uuid = "8139114084848"
 
 [node name="InventoryItem4" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(375, 277)
 item_id = "teleport"
+uuid = "8139164416207"
 
 [node name="InventoryItem5" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(444, 282)
 item_id = "token"
+uuid = "8139214747583"
 
 [node name="InventoryItem6" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(704, 273)
 item_id = "signalisation"
+uuid = "8139265077640"
 
 [node name="InventoryItem7" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(70, 251)
-item_id = "chili"
+item_id = "amulet"
+uuid = "8139315410267"
 
 [node name="InventoryItem8" parent="Pickables" instance=ExtResource("5_12s2r")]
 position = Vector2(111, 317)
 item_id = "olives"
+uuid = "8139365742727"
 
 [editable path="Doors/door_main_L"]
+[editable path="Doors/door_main_L2"]
+[editable path="Doors/door_main_L3"]

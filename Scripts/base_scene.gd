@@ -19,3 +19,7 @@ func _ready() -> void:
 			var spawn_point: Node = door.get_node("SpawnPoint")
 			var player_body: CharacterBody2D = player.get_node("PlayerMovement")
 			player_body.global_position = spawn_point.global_position
+
+
+func _exit_tree() -> void:
+	print(DataPersistence.tracked_items)

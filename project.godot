@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneTransitionManager="*res://Scenes/globals/scene_transition.tscn"
 ItemDb="*res://Scripts/globals/item_db.gd"
 GlobalManager="*res://Scripts/globals/global_manager.gd"
+DataPersistence="*res://Scripts/globals/data_persistence.gd"
 
 [debug]
 

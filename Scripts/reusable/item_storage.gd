@@ -36,7 +36,6 @@ func remove_item(item: Item) -> Item:
 		storage.remove_at(index)
 		storage.append(null)
 		item_removed.emit(removed_item)
-		print(removed_item)
 		return removed_item
 	else:
 		printerr("the item to remove was not found.")
