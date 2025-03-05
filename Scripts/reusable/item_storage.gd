@@ -26,6 +26,7 @@ func add_item(item: Item) -> bool:
 	storage[index] = item
 	print("added: ", item.item_name)
 	item_added.emit(item)
+	print(storage)
 	return true
 
 

@@ -100,7 +100,7 @@ func _populate() -> void:
 		slot_container.add_child(slot)
 		slots.append(slot)
 
-		var slot_item: Item = storage.items[i]
+		var slot_item: Item = storage.storage[i]
 		slot.set_item(slot_item)
 
 
@@ -109,8 +109,8 @@ func add_button(btn_name: String) -> ActionButton:
 		printerr("there are two buttons already.")
 		return null
 	var new_button: ActionButton = BUTTON_SCENE.instantiate()
-	new_button.set_action(btn_name)
 	button_container.add_child(new_button)
+	new_button.set_action(btn_name)
 	action_buttons.append(new_button)
 	return new_button
 
@@ -140,11 +140,17 @@ func _on_item_removed(removed_item: Item) -> void:
 func resize() -> void:
 	slots.resize(storage.capacity)
 
+func toggle_visibility() -> void:
+	visible = !visible
+	if not visible:
+		_close_inventory()
 
-func close_inventory() -> void:
+func _close_inventory() -> void:
 	selection_state = SelectionState.INVENTORY
-	action_buttons[selected_button_index].self_modulate = Color.WHITE
-	slots[selected_index].self_modulate = Color.WHITE
+	if selected_button_index != -1:
+		action_buttons[selected_button_index].self_modulate = Color.WHITE
+	if selected_index != -1:
+		slots[selected_index].self_modulate = Color.WHITE
 	selected_index = -1
 	selected_button_index = 0
 	pointer.visible = false
