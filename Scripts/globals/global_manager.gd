@@ -50,7 +50,7 @@ func signalisation() -> void:
 
 
 func teleport() -> void:
-	print("teleport was used!")
+	player.teleport_player()
 
 
 func amulet() -> void:
@@ -71,6 +71,14 @@ func post_scene_load() -> void:
 	needs_reload = false
 	player = _fetch_player()
 
+
+func is_on_floor_check(pos: Vector2) -> bool:
+	var current_lvl: Node = get_tree().current_scene
+	var current_floor: TileMapLayer = current_lvl.tile_layer
+	var local_position: Vector2 = current_floor.to_local(pos)
+	var tile_coords: Vector2i = current_floor.local_to_map(local_position)
+	var source_id: int = current_floor.get_cell_source_id(tile_coords)
+	return source_id != -1
 
 func _on_player_dead() -> void:
 	reset()

@@ -43,9 +43,9 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("ui_left"):
 			select_slot(-1)
 		elif event.is_action_pressed("ui_down"):
-			select_slot(9) # Всегда 9 колонн в инвентаре - но в целом для сундуков эту цифру можно вынести в variable и от этого отталкиваться
+			select_slot(10) # Всегда 9 колонн в инвентаре - но в целом для сундуков эту цифру можно вынести в variable и от этого отталкиваться
 		elif event.is_action_pressed("ui_up"):
-			select_slot(-9)
+			select_slot(-10)
 		elif event.is_action_pressed("ui_accept"):
 			_enter_button_selection()
 	

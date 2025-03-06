@@ -14,6 +14,7 @@ radius = 12.0416
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0gyf0")
+level_floor = NodePath("GameWorld/TileSets/Grass")
 
 [node name="GameWorld" parent="." instance=ExtResource("1_r341e")]
 
@@ -80,13 +81,8 @@ position = Vector2(235, 298)
 item_id = "chili"
 uuid = "8139114084848"
 
-[node name="InventoryItem4" parent="Pickables" instance=ExtResource("5_12s2r")]
-position = Vector2(375, 277)
-item_id = "teleport"
-uuid = "8139164416207"
-
 [node name="InventoryItem5" parent="Pickables" instance=ExtResource("5_12s2r")]
-position = Vector2(444, 282)
+position = Vector2(480, 272)
 item_id = "token"
 uuid = "8139214747583"
 
@@ -104,6 +100,31 @@ uuid = "8139315410267"
 position = Vector2(111, 317)
 item_id = "olives"
 uuid = "8139365742727"
+
+[node name="InventoryItem4" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(381, 273)
+item_id = "teleport"
+uuid = "8139164416207"
+
+[node name="InventoryItem12" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(406, 274)
+item_id = "teleport"
+uuid = "8139164416207"
+
+[node name="InventoryItem13" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(391, 243)
+item_id = "teleport"
+uuid = "8139164416207"
+
+[node name="InventoryItem14" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(389, 293)
+item_id = "teleport"
+uuid = "8139164416207"
+
+[node name="InventoryItem15" parent="Pickables" instance=ExtResource("5_12s2r")]
+position = Vector2(416, 257)
+item_id = "teleport"
+uuid = "8139164416207"
 
 [node name="Interactables" type="Node2D" parent="."]
 

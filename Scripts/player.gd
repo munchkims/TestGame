@@ -49,6 +49,11 @@ func add_item(item: Item) -> bool:
 		return false
 
 
+# Пока что функция эта не принимает аргументов, но можно сделать оверрайд
+func teleport_player() -> void:
+	player_movement.teleport_within_radius()
+
+
 func _on_item_removed(item_removed: Item) -> void:
 	player_storage.remove_item(item_removed)
 
@@ -87,7 +92,7 @@ func _on_door_answer(yes_open: bool) -> void:
 	stored_door = null
 
 
-# Возможно, конечно, перезагрузку вручную
+# Возможно, конечно, перезагрузку вручную сделать
 func _on_health_depleted() -> void:
 	print("you die!")
 	player_dead.emit()

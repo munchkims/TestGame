@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var char_speed: float = 50.0
 @export var ray_length: int = 15
+@export var base_tp_radius: float = 150.0
 
 @onready var char_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var raycast: RayCast2D = $RayCast2D
@@ -10,6 +11,8 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2.ZERO
 var cardinal_direction: Vector2 = Vector2.DOWN
 var state: String = "idle"
+
+var min_tp_radius: float = 10.0
 
 func _ready() -> void:
 	animate()
@@ -91,3 +94,46 @@ func is_near_interactable() -> String:
 
 func set_player_movement(stop_movement: bool) -> void:
 	set_physics_process(!stop_movement) # Обратное, так как везде UI нам посылает true, если он открыт
+
+
+func get_player_position() -> Vector2:
+	return global_position
+
+
+func _get_random_position_in_radius(radius: float) -> Vector2:
+	if radius < min_tp_radius:
+		radius = min_tp_radius
+	var angle: float = randf_range(0, 2 * PI)
+	var distance: float = randf_range(min_tp_radius, radius)
+	print(global_position + Vector2(cos(angle), sin(angle)) * distance)
+	return global_position + Vector2(cos(angle), sin(angle)) * distance
+
+
+func teleport_within_radius(radius: float = base_tp_radius) -> void:
+	var max_attempts: int = 100
+	var attempts: int = 0
+	var pos: Vector2
+
+	while attempts < max_attempts:
+		pos = _get_random_position_in_radius(radius)
+		if is_position_free(pos):
+			break
+		attempts += 1
+	
+	if attempts < max_attempts:
+		global_position = pos
+	else:
+		print("Didn't find valid positions for teleporting")
+
+
+func is_position_free(pos: Vector2) -> bool:
+	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var query: PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
+	query.position = pos
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+
+	var res: Array = space_state.intersect_point(query)
+	print(res.is_empty())
+	print(GlobalManager.is_on_floor_check(pos))
+	return res.is_empty() and GlobalManager.is_on_floor_check(pos)

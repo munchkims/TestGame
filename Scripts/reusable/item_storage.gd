@@ -3,7 +3,7 @@ class_name ItemStorage
 
 @export_range(0, MAX_CAPACITY) var storage_cap: int = 12
 
-const MAX_CAPACITY: int = 36
+const MAX_CAPACITY: int = 40 # Взяла максимальную цифру, которая красиво помещается в инвентаре.
 
 var capacity: int
 var storage: Array = []

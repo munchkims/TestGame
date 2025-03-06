@@ -1,10 +1,15 @@
 extends Node2D
 class_name BaseScene
 
+@export var level_floor: NodePath
+
 @onready var player: Player = get_node_or_null("Player")
 @onready var door_cont: Node2D = $Doors
 
+var tile_layer: TileMapLayer
+
 func _ready() -> void:
+	tile_layer = get_node(level_floor)
 	if SceneTransitionManager.saved_player:
 		if player:
 			# Otherwise it gets freed at the end of the frame, causing the naming issue
