@@ -24,7 +24,11 @@ func _physics_process(delta: float) -> void:
 
 func move(_delta: float) -> void:
 	direction = Input.get_vector("Left", "Right", "Up", "Down")
-	velocity = direction * char_speed
+	
+	# Убираем диагональное движение
+	if direction.x != 0:
+		direction.y = 0
+	velocity = direction.normalized() * char_speed
 	
 	move_and_slide()
 

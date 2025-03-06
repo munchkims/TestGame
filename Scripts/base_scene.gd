@@ -19,6 +19,10 @@ func _ready() -> void:
 			var spawn_point: Node = door.get_node("SpawnPoint")
 			var player_body: CharacterBody2D = player.get_node("PlayerMovement")
 			player_body.global_position = spawn_point.global_position
+			# Так как в задании написано, что при переходе между сценами направление взгляда не должно сохраняться
+			player_body.cardinal_direction = Vector2.DOWN
+			player_body.animate()
+			
 	
 	if GlobalManager.needs_reload:
 		GlobalManager.post_scene_load()

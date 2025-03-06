@@ -37,4 +37,8 @@ func reset() -> void:
 
 
 func reset_doors() -> void:
+	if get_tree().current_scene.scene_file_path == "res://Scenes/main_game.tscn":
+		for door_path: NodePath in open_doors:
+			var door: Door = get_node(door_path)
+			door.close()
 	open_doors.clear()

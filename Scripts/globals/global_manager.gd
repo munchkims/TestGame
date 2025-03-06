@@ -26,7 +26,7 @@ func _fetch_player() -> Player:
 	return null
 
 
-# Список функций, такой же как id предмета
+# Список функций, и названия должны быть такими же как id предмета
 
 func apple() -> void:
 	player.change_current_health(1)
@@ -46,7 +46,7 @@ func olives() -> void:
 
 
 func signalisation() -> void:
-	print("signalisation was used!")
+	DataPersistence.reset_doors()
 
 
 func teleport() -> void:

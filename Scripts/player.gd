@@ -79,6 +79,7 @@ func door_popup(door: Door) -> void:
 
 func _on_door_answer(yes_open: bool) -> void:
 	if yes_open:
+		remove_key()
 		stored_door.enter()
 	else:
 		print("The player decided not to open the door.")

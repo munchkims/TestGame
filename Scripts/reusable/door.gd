@@ -48,5 +48,5 @@ func open() -> void:
 
 func close() -> void:
 	is_open = false
-	DataPersistence.remove_open_door(get_path())
+	#DataPersistence.remove_open_door(get_path()) - Не была уверена, сделать это через Main Game Scene, или же Data Persistence: но потом выбрала Data Persistence, поэтому тут убрала 
 	self_modulate.a = 1
