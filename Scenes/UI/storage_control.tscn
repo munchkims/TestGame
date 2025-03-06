@@ -142,6 +142,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
 text = "Пустая ячейка"
+autowrap_mode = 3
 
 [node name="Pointer" type="TextureRect" parent="BG"]
 visible = false
