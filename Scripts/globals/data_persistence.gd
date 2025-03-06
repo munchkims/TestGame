@@ -34,3 +34,7 @@ func is_picked_up(uuid: String) -> bool:
 func reset() -> void:
 	open_doors.clear()
 	tracked_items.clear()
+
+
+func reset_doors() -> void:
+	open_doors.clear()

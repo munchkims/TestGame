@@ -1,17 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd4q20ww7dpva"]
+[gd_scene load_steps=4 format=3 uid="uid://cd4q20ww7dpva"]
 
 [ext_resource type="Texture2D" uid="uid://brqdgidnpf41g" path="res://Art/Items/amulet.png" id="1_lq5m4"]
 [ext_resource type="Script" path="res://Scripts/reusable/inv_item.gd" id="1_orn0l"]
-[ext_resource type="Script" path="res://Scripts/reusable/pickable_item.gd" id="3_qn0f4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tkdpi"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjt7d"]
 
 [node name="InventoryItem" type="Sprite2D"]
 texture = ExtResource("1_lq5m4")
 script = ExtResource("1_orn0l")
 
-[node name="PickableItem" type="Area2D" parent="."]
-script = ExtResource("3_qn0f4")
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableItem"]
-shape = SubResource("CircleShape2D_tkdpi")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qjt7d")

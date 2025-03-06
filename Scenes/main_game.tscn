@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://du2ixcgw3jomt"]
+[gd_scene load_steps=9 format=3 uid="uid://du2ixcgw3jomt"]
 
 [ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_0gyf0"]
 [ext_resource type="PackedScene" uid="uid://kn6qje82vj1h" path="res://Scenes/game_world.tscn" id="1_r341e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bph0s7b2cky5" path="res://Scenes/reusable/door.tscn" id="3_0jlvj"]
 [ext_resource type="PackedScene" uid="uid://cd4q20ww7dpva" path="res://Scenes/reusable/inventory_item.tscn" id="5_12s2r"]
 [ext_resource type="Script" path="res://Scripts/reusable/interactable.gd" id="6_k87mt"]
+[ext_resource type="PackedScene" uid="uid://byabfgeamw5jw" path="res://Scenes/reusable/key.tscn" id="7_ewb0e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0m6a"]
 radius = 12.0416
@@ -122,6 +123,24 @@ interaction_line = "Яблоня. Аж яблочко захотелось."
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Interactable2"]
 position = Vector2(312, 243)
 shape = SubResource("CircleShape2D_n0m6a")
+
+[node name="Keys" type="Node2D" parent="."]
+
+[node name="Key" parent="Keys" instance=ExtResource("7_ewb0e")]
+position = Vector2(574, 183)
+uuid = "3047514240654"
+
+[node name="Key2" parent="Keys" instance=ExtResource("7_ewb0e")]
+position = Vector2(470, 341)
+uuid = "3047564572237"
+
+[node name="Key3" parent="Keys" instance=ExtResource("7_ewb0e")]
+position = Vector2(329, 72)
+uuid = "3712512751760"
+
+[node name="Key4" parent="Keys" instance=ExtResource("7_ewb0e")]
+position = Vector2(597, 42)
+uuid = "3947611879420"
 
 [editable path="Doors/door_main_L"]
 [editable path="Doors/door_main_L2"]

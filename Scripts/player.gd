@@ -18,14 +18,22 @@ func _ready() -> void:
 	player_main_HUD.update_health(health_component.max_health, true)
 	health_component.health_depleted.connect(_on_health_depleted)
 	health_component.health_changed.connect(Callable(player_main_HUD, "update_health"))
+	player_stats.key_number_changed.connect(Callable(player_main_HUD, "update_key_number"))
+	player_main_HUD.update_key_number(player_stats.keys)
 	
 
 func has_key() -> bool:
-	return true
+	if player_stats.key_count() > 0:
+		return true
+	return false
 
 
 func add_key() -> void:
-	pass
+	player_stats.add_key()
+
+
+func remove_key() -> void:
+	player_stats.remove_key()
 
 
 func add_item(item: Item) -> bool:

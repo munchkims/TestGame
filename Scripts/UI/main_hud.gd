@@ -8,6 +8,8 @@ extends Control
 @onready var text_pop_up_label: Label = $TextPopUp/Label
 @onready var timer: Timer = $Timer
 
+signal popup_window(is_open: bool)
+
 
 func update_health(health: int, max_health: bool = false) -> void:
 	var parts: PackedStringArray = hp_number.text.split("/")
@@ -26,5 +28,10 @@ func show_pop_up(popup_text: String) -> void:
 	text_pop_up_label.text = popup_text
 	text_pop_up.visible = true
 
+
 func _on_timer_timeout() -> void:
 	text_pop_up.visible = false
+
+
+func show_door_window() -> void:
+	pass

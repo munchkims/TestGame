@@ -202,6 +202,7 @@ script = ExtResource("4_6pmsv")
 
 [node name="PlayerStorage" type="Node2D" parent="."]
 script = ExtResource("5_aovf8")
+storage_cap = 3
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("6_vwrky")

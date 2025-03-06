@@ -121,6 +121,38 @@ text = "Some text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DoorPopUp" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -68.5
+offset_right = 117.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3cmrg")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="DoorPopUp"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+text = "Вы хотите потратить 1 ключ и открыть дверь?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
