@@ -54,11 +54,8 @@ func teleport() -> void:
 
 
 func amulet() -> void:
-	print("amulet was used!")
-
-# Ну эта функция не должна в принципе быть, потом логику заполнения в ItemDb можно поменять с этим чеком.
-func token() -> void:
-	print("token was used!")
+	player.change_current_health(-9)
+	player.change_max_health(1)
 
 
 func reset() -> void:

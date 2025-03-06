@@ -6,9 +6,14 @@ var storage: ItemStorage
 const SLOT_SCENE: Resource = preload("res://Scenes/UI/inv_slot.tscn")
 const BUTTON_SCENE: Resource = preload("res://Scenes/UI/action_button.tscn")
 
+const EMPTY_NAME: String = "Пусто"
+const EMPTY_DESCRIPTION: String = "Пустая ячейка"
+
 @onready var slot_container: GridContainer = $BG/SlotContainer
 @onready var button_container: VBoxContainer = $BG/ButtonsBG/ButtonContainer
 @onready var pointer: TextureRect = $BG/Pointer
+@onready var inv_item_name: Label = $BG/InfoBG/ItemNameBg/ItemName
+@onready var inv_item_desc: Label = $BG/InfoBG/ItemDescBg/ItemDescription
 
 enum SelectionState {INVENTORY, BUTTONS}
 var selection_state: SelectionState = SelectionState.INVENTORY
@@ -66,6 +71,7 @@ func select_slot(offset: int) -> void:
 		selected_index = new_index
 		slots[selected_index].self_modulate = Color(0.9, 0.7, 0.5, 1)
 		_update_pointer()
+		_update_info()
 		new_selection.emit()
 
 
@@ -97,6 +103,16 @@ func _exit_button_selection() -> void:
 func _update_pointer() -> void:
 	pointer.global_position = slots[selected_index].global_position + Vector2(18, 18)
 	pointer.visible = true
+
+
+func _update_info() -> void:
+	var selected_item: Item = slots[selected_index].item
+	if selected_item != null:
+		inv_item_name.text = selected_item.item_name
+		inv_item_desc.text = selected_item.description
+	else:
+		inv_item_name.text = EMPTY_NAME
+		inv_item_desc.text = EMPTY_DESCRIPTION
 
 
 func _populate() -> void:

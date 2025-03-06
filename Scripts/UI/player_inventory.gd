@@ -41,7 +41,8 @@ func _on_use_button_pressed() -> void:
 	if selected_item == null:
 		return
 	selected_item.use_func.call()
-	item_removed.emit(selected_item)
+	if not selected_item.is_reusable:
+		item_removed.emit(selected_item)
 	_close_and_open_inv()
 
 

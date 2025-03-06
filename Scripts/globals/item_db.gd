@@ -24,12 +24,14 @@ func load_items() -> void:
                 item.item_name = item_data["name"]
                 item.description = item_data["description"]
                 item.item_sprite = load(TEXTURE_PATH + item.item_id + ".png")
-                item.set_use_func(GlobalManager.item_function(item.item_id))
 
                 if "is_usable" in item_data:
                     item.is_usable = item_data["is_usable"]
                 if "is_reusable" in item_data:
                     item.is_reusable = item_data["is_reusable"]
+
+                if item.is_usable == true:
+                    item.set_use_func(GlobalManager.item_function(item.item_id))
 
                 items[item.item_id] = item
                 
