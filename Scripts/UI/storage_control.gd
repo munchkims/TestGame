@@ -123,6 +123,14 @@ func add_button(btn_name: String) -> ActionButton:
 	return new_button
 
 
+func remove_all_buttons() -> void:
+	for i in range(action_buttons.size() - 1, -1, -1):
+		action_buttons[i].queue_free()
+		action_buttons.remove_at(i)
+	selection_state = SelectionState.INVENTORY
+	selected_button_index = 0
+
+
 func get_selected_item() -> Item:
 	if selected_index != -1:
 		return slots[selected_index].item
