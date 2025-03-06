@@ -11,15 +11,8 @@ signal item_removed(used_item: Item)
 var use_btn: ActionButton
 var discard_btn: ActionButton
 
-# func _ready() -> void:
-# 	player = _fetch_player()
-# 	if player == null:
-# 		printerr("No player found!")
-# 	player_inventory = STORAGE_SCENE.instantiate()
-# 	player_inventory.storage = player.player_inventory
-# 	add_child(player_inventory)
-# 	use_btn = add_buttons("Использовать", _on_use_button_pressed)
-# 	discard_btn = add_buttons("Выбросить", _on_discard_button_pressed)
+var inventory_blocked: bool = false
+
 
 func create_player_inventory(storage: ItemStorage) -> void:
 	player_inventory = STORAGE_SCENE.instantiate()
@@ -30,7 +23,7 @@ func create_player_inventory(storage: ItemStorage) -> void:
 	player_inventory.new_selection.connect(_on_next_slot_selected)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Inv"):
+	if event.is_action_pressed("Inv") and not inventory_blocked:
 		_close_and_open_inv()
 
 
@@ -75,3 +68,10 @@ func _fetch_player() -> Player:
 func _close_and_open_inv() -> void:
 	player_inventory.toggle_visibility()
 	inventory_open.emit(player_inventory.visible)
+
+
+func _door_popup_open(is_open: bool) -> void:
+	inventory_blocked = is_open
+	# Временное решение, на случай если вдруг прям перед тем, как появится окно, игрок нажмет Q
+	if inventory_blocked and player_inventory.visible == true:
+		player_inventory.toggle_visibility()

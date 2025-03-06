@@ -20,6 +20,7 @@ var selected_button_index: int = 0
 var slots: Array
 var action_buttons: Array
 
+
 func _ready() -> void:
 	visible = false
 	set_process_input(false)
@@ -177,12 +178,14 @@ func _find_slot_by_item(ref_item: Item) -> int:
 func resize() -> void:
 	slots.resize(storage.capacity)
 
+
 func toggle_visibility() -> void:
 	visible = !visible
 	if not visible:
 		_close_inventory()
 	else:
 		set_process_input(true)
+
 
 func _close_inventory() -> void:
 	selection_state = SelectionState.INVENTORY

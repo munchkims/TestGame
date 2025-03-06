@@ -30,12 +30,15 @@ func _on_body_entered(body: Node2D) -> void:
 		if is_open:
 			SceneTransitionManager.change_scene(loaded_scene, target_door)
 		elif parent.has_key():
-			print("popup to ask")
-			open()
-			DataPersistence.save_open_door(get_path())
-			SceneTransitionManager.change_scene(loaded_scene, target_door)
+			parent.door_popup(self)
 		else:
 			return
+
+
+func enter() -> void:
+	open()
+	DataPersistence.save_open_door(get_path())
+	SceneTransitionManager.change_scene(loaded_scene, target_door)
 
 
 func open() -> void:

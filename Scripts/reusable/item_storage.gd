@@ -1,7 +1,9 @@
 extends Node2D
 class_name ItemStorage
 
-@export var storage_cap: int = 24
+@export_range(0, MAX_CAPACITY) var storage_cap: int = 12
+
+const MAX_CAPACITY: int = 36
 
 var capacity: int
 var storage: Array = []
@@ -12,6 +14,10 @@ signal item_removed(item: Item)
 
 
 func _ready() -> void:
+	# По сути, из-за export_range это не обязательно, это больше для перестраховки и потенциальноо расширения кода для динамического создания хранилища
+	if not (0 <= storage_cap and storage_cap <= MAX_CAPACITY):
+		storage_cap = clamp(storage_cap, 0, MAX_CAPACITY)
+	
 	if capacity == 0:
 		capacity = storage_cap
 		storage.resize(capacity)
@@ -55,6 +61,9 @@ func remove_item(item: Item) -> Item:
 
 
 func resize_storage(new_capacity: int) -> void:
+	if not (0 <= new_capacity and new_capacity <= MAX_CAPACITY):
+		new_capacity = clamp(new_capacity, 0, MAX_CAPACITY)
+	
 	capacity = new_capacity
 	storage.resize(capacity)
 	storage_resized.emit()

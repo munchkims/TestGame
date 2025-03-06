@@ -17,6 +17,6 @@ func add_key() -> void:
 
 func remove_key() -> void:
     keys -= 1
-    if keys < 0:
+    if keys < 0: # Таково по сути не должно быть, это больше на всякий случай
         keys = 0
     key_number_changed.emit(keys)

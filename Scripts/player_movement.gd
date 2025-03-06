@@ -83,3 +83,7 @@ func is_near_interactable() -> String:
 			return collider.message()
 	
 	return ""
+
+
+func set_player_movement(stop_movement: bool) -> void:
+	set_physics_process(!stop_movement) # Обратное, так как везде UI нам посылает true, если он открыт

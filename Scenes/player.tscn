@@ -195,14 +195,12 @@ zoom = Vector2(2, 2)
 target_position = Vector2(0, 20)
 hit_from_inside = true
 collide_with_areas = true
-collide_with_bodies = false
 
 [node name="PlayerStats" type="Node2D" parent="."]
 script = ExtResource("4_6pmsv")
 
 [node name="PlayerStorage" type="Node2D" parent="."]
 script = ExtResource("5_aovf8")
-storage_cap = 3
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("6_vwrky")

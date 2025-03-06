@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy2o558icttjk"]
+[gd_scene load_steps=6 format=3 uid="uid://cy2o558icttjk"]
 
 [ext_resource type="Script" path="res://Scripts/UI/main_hud.gd" id="1_o1uk3"]
 [ext_resource type="Texture2D" uid="uid://doafri76h47sx" path="res://Art/UI/action_button_normal.png" id="1_tsk6c"]
 [ext_resource type="Texture2D" uid="uid://diwmxb66aoo0w" path="res://Art/UI/UI-slot.png" id="2_3cmrg"]
+[ext_resource type="Texture2D" uid="uid://dgfjlfg4s5d0j" path="res://Art/UI/UI Big Play Button copy.png" id="4_1be0v"]
+[ext_resource type="Texture2D" uid="uid://bmw8eyui8x355" path="res://Art/UI/UI Big Play Button Pressed.png" id="5_mh03o"]
 
 [node name="MainHUD" type="Control"]
 layout_mode = 3
@@ -122,6 +124,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DoorPopUp" type="NinePatchRect" parent="."]
+visible = false
+self_modulate = Color(0.88701, 0.753955, 0.668935, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -140,7 +144,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Label" type="Label" parent="DoorPopUp"]
+[node name="KeyQuestion" type="Label" parent="DoorPopUp"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -153,6 +157,57 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="DoorPopUp"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Yes" type="TextureButton" parent="DoorPopUp/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_1be0v")
+texture_pressed = ExtResource("5_mh03o")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="DoorPopUp/HBoxContainer/Yes"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+text = "Да"
+
+[node name="No" type="TextureButton" parent="DoorPopUp/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_1be0v")
+texture_pressed = ExtResource("5_mh03o")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="DoorPopUp/HBoxContainer/No"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.311862, 0.137977, 0.0530358, 1)
+text = "Нет"
+
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="pressed" from="DoorPopUp/HBoxContainer/Yes" to="." method="_on_popup_button_pressed" binds= [true]]
+[connection signal="pressed" from="DoorPopUp/HBoxContainer/No" to="." method="_on_popup_button_pressed" binds= [false]]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
