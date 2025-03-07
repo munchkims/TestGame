@@ -66,6 +66,7 @@ func remove_spawned_item(uuid: String) -> void:
 func reset() -> void:
 	open_doors.clear()
 	tracked_items.clear()
+	spawned_items.clear()
 
 
 func reset_doors() -> void:

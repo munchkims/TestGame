@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ghwf1kfyuyk"]
+
+[ext_resource type="Texture2D" uid="uid://dpopj1uqjaq6d" path="res://Art/Objects/Free_Chicken_House.png" id="1_hyixo"]
+[ext_resource type="Script" path="res://Scripts/reusable/interactable.gd" id="2_7odhx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhvtl"]
+size = Vector2(42, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cud58"]
+size = Vector2(33, 33)
+
+[node name="InteractableBody" type="Sprite2D"]
+y_sort_enabled = true
+position = Vector2(1, -24)
+texture = ExtResource("1_hyixo")
+
+[node name="Interactable" type="Area2D" parent="."]
+script = ExtResource("2_7odhx")
+interaction_line = "Интересно, кто тут живет?"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_qhvtl")
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, 3.5)
+shape = SubResource("RectangleShape2D_cud58")
