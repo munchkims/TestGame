@@ -5,6 +5,9 @@ class_name BaseScene
 
 @onready var player: Player = get_node_or_null("Player")
 @onready var door_cont: Node2D = $Doors
+@onready var item_container: Node2D = $Pickables
+
+const INV_ITEM: Resource = preload("res://Scenes/reusable/inventory_item.tscn")
 
 var tile_layer: TileMapLayer
 
@@ -31,3 +34,14 @@ func _ready() -> void:
 	
 	if GlobalManager.needs_reload:
 		GlobalManager.post_scene_load()
+	
+	var spawned_items: Array = DataPersistence.check_spawned_items()
+	if not spawned_items.is_empty():
+		for item: Variant in spawned_items:
+			var spawned_item: InventoryItem = INV_ITEM.instantiate()
+			spawned_item.uuid = item["uuid"]
+			spawned_item.item_data = item["item_data"]
+			spawned_item.is_spawned = true
+			spawned_item.texture = spawned_item.item_data.item_sprite
+			item_container.add_child(spawned_item)
+			spawned_item.global_position = item["pos"]

@@ -165,23 +165,12 @@ func _on_item_added(new_item: Item) -> void:
 func _on_item_removed(removed_item: Item) -> void:
 	var index: int = _find_slot_by_item(removed_item)
 	if index != -1:
-		# var del_slot: TextureRect = slots[index]
-		# slots.remove_at(index)
-		# del_slot.queue_free()
-		# var slot: TextureRect = SLOT_SCENE.instantiate()
-		# slot_container.add_child(slot)
-		# slots.append(slot)
-		# var slot_item: Item = storage.storage[index]
-		# slot.set_item(slot_item)
 		slots[index].reset()
 		for i in range(index, slots.size() - 1):
-			# if i + 1 == -1:
-			# 	continue
 			slots[i].reset()
 			slots[i].set_item(slots[i + 1].item)
 		
 		slots[slots.size() - 1].reset()
-		#slots[slots.size() - 1].visible = false
 
 
 func _find_null_slot() -> int:

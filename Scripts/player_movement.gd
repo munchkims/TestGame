@@ -64,6 +64,7 @@ func set_state() -> bool:
 	state = new_state
 	return true
 
+
 func anim_dir() -> String:
 	match cardinal_direction:
 		Vector2.DOWN:
@@ -100,12 +101,11 @@ func get_player_position() -> Vector2:
 	return global_position
 
 
-func _get_random_position_in_radius(radius: float) -> Vector2:
-	if radius < min_tp_radius:
-		radius = min_tp_radius
+func get_random_position_in_radius(max_radius: float, min_radius: float = min_tp_radius) -> Vector2:
+	if min_radius > max_radius:
+		min_radius = max_radius
 	var angle: float = randf_range(0, 2 * PI)
-	var distance: float = randf_range(min_tp_radius, radius)
-	print(global_position + Vector2(cos(angle), sin(angle)) * distance)
+	var distance: float = randf_range(min_radius, max_radius)
 	return global_position + Vector2(cos(angle), sin(angle)) * distance
 
 
@@ -115,7 +115,7 @@ func teleport_within_radius(radius: float = base_tp_radius) -> void:
 	var pos: Vector2
 
 	while attempts < max_attempts:
-		pos = _get_random_position_in_radius(radius)
+		pos = get_random_position_in_radius(radius)
 		if is_position_free(pos):
 			break
 		attempts += 1
@@ -126,14 +126,12 @@ func teleport_within_radius(radius: float = base_tp_radius) -> void:
 		print("Didn't find valid positions for teleporting")
 
 
-func is_position_free(pos: Vector2) -> bool:
+func is_position_free(pos: Vector2, include_areas: bool = true) -> bool:
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var query: PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
 	query.position = pos
-	query.collide_with_areas = true
+	query.collide_with_areas = include_areas
 	query.collide_with_bodies = true
 
 	var res: Array = space_state.intersect_point(query)
-	print(res.is_empty())
-	print(GlobalManager.is_on_floor_check(pos))
 	return res.is_empty() and GlobalManager.is_on_floor_check(pos)

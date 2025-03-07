@@ -6,14 +6,15 @@ class_name InventoryItem
 
 
 var item_data: Item = null
-#var duplicate_item: Item
+var is_spawned: bool = false
 
 
 func _ready() -> void:
 	super._ready()
-	item_data = ItemDb.get_item(item_id).duplicate(true)
-	
 	# Вообще я могу поменять item_storage на Словарь (Dictionary), чтобы вообще не дублировать, но я не была уверена, стоит ли, так как в задании этого не указано
+	if is_spawned:
+		return
+	item_data = ItemDb.get_item(item_id).duplicate(true)
 	
 	if item_data:
 		texture = item_data.item_sprite
@@ -28,3 +29,10 @@ func _on_player_entered(_player: Player) -> void:
 		queue_free()
 	else:
 		return
+
+
+func save() -> void:
+	if not is_spawned:
+		DataPersistence.register_item(uuid, picked_up)
+	elif picked_up:
+		DataPersistence.remove_spawned_item(uuid)

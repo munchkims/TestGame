@@ -80,5 +80,6 @@ func is_on_floor_check(pos: Vector2) -> bool:
 	var source_id: int = current_floor.get_cell_source_id(tile_coords)
 	return source_id != -1
 
+
 func _on_player_dead() -> void:
 	reset()
