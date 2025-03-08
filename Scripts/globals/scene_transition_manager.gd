@@ -17,11 +17,13 @@ func change_scene(target_scene: PackedScene, target_door: String) -> void:
 	anim_player.animation_finished.connect(on_finished)
 	anim_player.play("fade_in")
 
+
 func _on_animation_finished(animation: String, target_scene: PackedScene, target_door: String) -> void:
 	if on_finished.is_null():
 		printerr("on_finished callable is null.")
 		return
 	
+	# TODO вытащить в функцию отдельную и сделать callable как вариант? либо сюда вытащить смену сцены
 	if animation == "fade_in":
 		var current_scene: Node = get_tree().current_scene
 		saved_player = current_scene.get_node("Player")

@@ -27,6 +27,7 @@ size = Vector2(6, 6)
 
 [node name="MainGame" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(4, 3)
 script = ExtResource("1_0gyf0")
 level_floor = NodePath("GameWorld/TileSets/Grass")
 
@@ -45,21 +46,30 @@ target_door = "left"
 position = Vector2(0, 29)
 scale = Vector2(1, 121.471)
 
-[node name="door_main_L2" parent="Doors" instance=ExtResource("3_0jlvj")]
+[node name="door_main_C" parent="Doors" instance=ExtResource("3_0jlvj")]
 position = Vector2(424, 168)
-target_scene = "res://Scenes/houses/left_house.tscn"
+target_scene = "res://Scenes/houses/center_house.tscn"
 target_door = "left"
 
-[node name="SpawnPoint" parent="Doors/door_main_L2" index="0"]
+[node name="SpawnPoint" parent="Doors/door_main_C" index="0"]
 position = Vector2(0, 29)
 scale = Vector2(1, 121.471)
 
-[node name="door_main_L3" parent="Doors" instance=ExtResource("3_0jlvj")]
+[node name="door_main_R" parent="Doors" instance=ExtResource("3_0jlvj")]
 position = Vector2(696, 168)
-target_scene = "res://Scenes/houses/left_house.tscn"
+target_scene = "res://Scenes/houses/right_house.tscn"
 target_door = "left"
 
-[node name="SpawnPoint" parent="Doors/door_main_L3" index="0"]
+[node name="SpawnPoint" parent="Doors/door_main_R" index="0"]
+position = Vector2(0, 29)
+scale = Vector2(1, 121.471)
+
+[node name="door_main_D" parent="Doors" instance=ExtResource("3_0jlvj")]
+position = Vector2(312, 344)
+target_scene = "res://Scenes/houses/lower_house.tscn"
+target_door = "left"
+
+[node name="SpawnPoint" parent="Doors/door_main_D" index="0"]
 position = Vector2(0, 29)
 scale = Vector2(1, 121.471)
 
@@ -202,7 +212,8 @@ position = Vector2(25, 86)
 uuid = "3947611879420"
 
 [editable path="Doors/door_main_L"]
-[editable path="Doors/door_main_L2"]
-[editable path="Doors/door_main_L3"]
+[editable path="Doors/door_main_C"]
+[editable path="Doors/door_main_R"]
+[editable path="Doors/door_main_D"]
 [editable path="Interactables/ChickenHouse"]
 [editable path="Interactables/Sign"]

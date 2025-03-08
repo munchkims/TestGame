@@ -1,27 +1,27 @@
-[gd_scene load_steps=43 format=4 uid="uid://d20ymqedt8i0o"]
+[gd_scene load_steps=43 format=4 uid="uid://bwfvmmcbprddj"]
 
-[ext_resource type="Texture2D" uid="uid://diw67rwgbsyt0" path="res://Art/Tile Maps/Grass.png" id="1_jnhaf"]
-[ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_tkh2i"]
-[ext_resource type="Texture2D" uid="uid://wk35ad5dm5yb" path="res://Art/Tile Maps/Wooden_House_Roof_Tilset.png" id="2_6jj6k"]
-[ext_resource type="Texture2D" uid="uid://btthkptf7h7xa" path="res://Art/Tile Maps/Wooden_House_Walls_Tilset.png" id="3_v8dxn"]
-[ext_resource type="Texture2D" uid="uid://b6ddboplvo2tr" path="res://Art/Tile Maps/Doors.png" id="4_h1oje"]
-[ext_resource type="Texture2D" uid="uid://dvvxcwuh8x34" path="res://Art/Tile Maps/Basic_Grass_Biom_things.png" id="5_xbb52"]
-[ext_resource type="PackedScene" uid="uid://bph0s7b2cky5" path="res://Scenes/reusable/door.tscn" id="6_d2wjv"]
-[ext_resource type="PackedScene" uid="uid://2ghwf1kfyuyk" path="res://Scenes/reusable/interactable_body.tscn" id="8_i5gmn"]
-[ext_resource type="Texture2D" uid="uid://dyew6v5j4spw8" path="res://Art/Objects/Basic_Furniture.png" id="9_jjcf3"]
-[ext_resource type="PackedScene" uid="uid://cd4q20ww7dpva" path="res://Scenes/reusable/inventory_item.tscn" id="9_toe6u"]
-[ext_resource type="Texture2D" uid="uid://d2wippdue4w8x" path="res://Art/Objects/cupboard.png" id="10_7mvu1"]
-[ext_resource type="Texture2D" uid="uid://bbyeg2qpstk0j" path="res://Art/Objects/carpet.png" id="11_qvhyf"]
-[ext_resource type="Texture2D" uid="uid://dyxuyypb36hva" path="res://Art/Objects/tabletop.png" id="11_rjlvv"]
-[ext_resource type="Texture2D" uid="uid://beb2niqjw6cme" path="res://Art/Objects/small carpet.png" id="12_07cv5"]
-[ext_resource type="Texture2D" uid="uid://gh8u04inqgp1" path="res://Art/Objects/small tabletop.png" id="12_550fi"]
-[ext_resource type="Texture2D" uid="uid://vf2h4pevtbej" path="res://Art/Objects/chair.png" id="13_o36gp"]
-[ext_resource type="Texture2D" uid="uid://5mgco0ub08bw" path="res://Art/Objects/chair down.png" id="14_60f2t"]
-[ext_resource type="Texture2D" uid="uid://cho4uhuw8ppip" path="res://Art/Objects/chair up.png" id="15_tl5ew"]
-[ext_resource type="Texture2D" uid="uid://fhcj2s5mce0u" path="res://Art/Objects/Chest.png" id="16_x5ism"]
+[ext_resource type="Script" path="res://Scripts/base_scene.gd" id="1_f0gm4"]
+[ext_resource type="Texture2D" uid="uid://diw67rwgbsyt0" path="res://Art/Tile Maps/Grass.png" id="2_wpbem"]
+[ext_resource type="Texture2D" uid="uid://wk35ad5dm5yb" path="res://Art/Tile Maps/Wooden_House_Roof_Tilset.png" id="3_8jnkc"]
+[ext_resource type="Texture2D" uid="uid://btthkptf7h7xa" path="res://Art/Tile Maps/Wooden_House_Walls_Tilset.png" id="4_1kbif"]
+[ext_resource type="Texture2D" uid="uid://b6ddboplvo2tr" path="res://Art/Tile Maps/Doors.png" id="5_2q6lt"]
+[ext_resource type="Texture2D" uid="uid://dvvxcwuh8x34" path="res://Art/Tile Maps/Basic_Grass_Biom_things.png" id="6_d4bdc"]
+[ext_resource type="Texture2D" uid="uid://dyew6v5j4spw8" path="res://Art/Objects/Basic_Furniture.png" id="7_k0k4s"]
+[ext_resource type="PackedScene" uid="uid://bph0s7b2cky5" path="res://Scenes/reusable/door.tscn" id="8_aj8yn"]
+[ext_resource type="PackedScene" uid="uid://cd4q20ww7dpva" path="res://Scenes/reusable/inventory_item.tscn" id="9_dewpj"]
+[ext_resource type="PackedScene" uid="uid://2ghwf1kfyuyk" path="res://Scenes/reusable/interactable_body.tscn" id="10_vlybe"]
+[ext_resource type="Texture2D" uid="uid://d2wippdue4w8x" path="res://Art/Objects/cupboard.png" id="11_onoxw"]
+[ext_resource type="Texture2D" uid="uid://dyxuyypb36hva" path="res://Art/Objects/tabletop.png" id="12_vsvw7"]
+[ext_resource type="Texture2D" uid="uid://gh8u04inqgp1" path="res://Art/Objects/small tabletop.png" id="13_688g0"]
+[ext_resource type="Texture2D" uid="uid://vf2h4pevtbej" path="res://Art/Objects/chair.png" id="14_cxcf5"]
+[ext_resource type="Texture2D" uid="uid://5mgco0ub08bw" path="res://Art/Objects/chair down.png" id="15_v7k0m"]
+[ext_resource type="Texture2D" uid="uid://cho4uhuw8ppip" path="res://Art/Objects/chair up.png" id="16_d8rxd"]
+[ext_resource type="Texture2D" uid="uid://fhcj2s5mce0u" path="res://Art/Objects/Chest.png" id="17_kqvg2"]
+[ext_resource type="Texture2D" uid="uid://bbyeg2qpstk0j" path="res://Art/Objects/carpet.png" id="18_l5m1m"]
+[ext_resource type="Texture2D" uid="uid://beb2niqjw6cme" path="res://Art/Objects/small carpet.png" id="19_dnki3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5uko0"]
-texture = ExtResource("1_jnhaf")
+texture = ExtResource("2_wpbem")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -175,7 +175,7 @@ texture = ExtResource("1_jnhaf")
 8:6/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efpr3"]
-texture = ExtResource("2_6jj6k")
+texture = ExtResource("3_8jnkc")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -211,7 +211,7 @@ texture = ExtResource("2_6jj6k")
 6:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oipmy"]
-texture = ExtResource("3_v8dxn")
+texture = ExtResource("4_1kbif")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.75, -8, 8, -8, 8, 8, 2.875, 8)
@@ -265,7 +265,7 @@ texture = ExtResource("3_v8dxn")
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0x0f"]
-texture = ExtResource("4_h1oje")
+texture = ExtResource("5_2q6lt")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
@@ -276,7 +276,7 @@ texture = ExtResource("4_h1oje")
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8l1u4"]
-texture = ExtResource("5_xbb52")
+texture = ExtResource("6_d4bdc")
 5:0/0 = 0
 5:0/0/y_sort_origin = 3
 6:0/0 = 0
@@ -338,7 +338,7 @@ texture = ExtResource("5_xbb52")
 8:2/0/y_sort_origin = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_firqn"]
-texture = ExtResource("9_jjcf3")
+texture = ExtResource("7_k0k4s")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -415,17 +415,17 @@ size = Vector2(16, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wd7k"]
 size = Vector2(14, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvtm7"]
-size = Vector2(12, 12.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_balvk"]
-size = Vector2(10, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uj2it"]
 size = Vector2(12, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3qet"]
 size = Vector2(10, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvtm7"]
+size = Vector2(12, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_balvk"]
+size = Vector2(10, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jdvfy"]
 size = Vector2(20, 16)
@@ -444,12 +444,13 @@ size = Vector2(31.5, 20)
 
 [node name="left_house" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_tkh2i")
+script = ExtResource("1_f0gm4")
 level_floor = NodePath("Tiles/Floors")
 
 [node name="Tiles" type="Node2D" parent="."]
 
 [node name="Floors" type="TileMapLayer" parent="Tiles"]
+self_modulate = Color(0.745098, 0.72549, 0.792157, 1)
 tile_map_data = PackedByteArray("AAAAAAQAAgAAAAAAAAAAAAUAAgAAAAEAAAAAAAYAAgAAAAEAAAAAAAcAAgAAAAEAAAAAAAgAAgAAAAEAAAAAAAkAAgAAAAEAAAAAAAoAAgAAAAEAAAAAAAsAAgAAAAIAAAABAAQAAgABAAAAAAABAAUAAgABAAEAAAABAAYAAgABAAEAAAABAAcAAgABAAEAAAABAAgAAgABAAEAAAABAAkAAgABAAEAAAABAAoAAgABAAEAAAABAAsAAgABAAEAAAACAAQAAgABAAAAAAACAAUAAgABAAEAAAACAAYAAgABAAEAAAACAAcAAgABAAEAAAACAAgAAgABAAEAAAACAAkAAgABAAEAAAACAAoAAgABAAEAAAACAAsAAgABAAEAAAADAAQAAgABAAAAAAADAAUAAgABAAEAAAADAAYAAgABAAEAAAADAAcAAgABAAEAAAADAAgAAgABAAEAAAADAAkAAgABAAEAAAADAAoAAgABAAEAAAADAAsAAgABAAEAAAAEAAQAAgABAAAAAAAEAAUAAgABAAEAAAAEAAYAAgABAAEAAAAEAAcAAgABAAEAAAAEAAgAAgABAAEAAAAEAAkAAgABAAEAAAAEAAoAAgABAAEAAAAEAAsAAgABAAEAAAAFAAQAAgABAAAAAAAFAAUAAgABAAEAAAAFAAYAAgABAAEAAAAFAAcAAgABAAEAAAAFAAgAAgABAAEAAAAFAAkAAgABAAEAAAAFAAoAAgABAAEAAAAFAAsAAgABAAEAAAAGAAQAAgABAAAAAAAGAAUAAgABAAEAAAAGAAYAAgABAAEAAAAGAAcAAgABAAEAAAAGAAgAAgABAAEAAAAGAAkAAgABAAEAAAAGAAoAAgABAAEAAAAGAAsAAgABAAEAAAAGAAwAAgABAAEAAAAHAAQAAgABAAAAAAAHAAUAAgABAAEAAAAHAAYAAgABAAEAAAAHAAcAAgABAAEAAAAHAAgAAgABAAEAAAAHAAkAAgABAAEAAAAHAAoAAgABAAEAAAAHAAsAAgABAAEAAAAIAAQAAgABAAAAAAAIAAUAAgABAAEAAAAIAAYAAgABAAEAAAAIAAcAAgABAAEAAAAIAAgAAgABAAEAAAAIAAkAAgABAAEAAAAIAAoAAgABAAEAAAAIAAsAAgABAAEAAAAJAAQAAgABAAAAAAAJAAUAAgABAAEAAAAJAAYAAgABAAEAAAAJAAcAAgABAAEAAAAJAAgAAgABAAEAAAAJAAkAAgABAAEAAAAJAAoAAgABAAEAAAAJAAsAAgABAAEAAAAKAAQAAgABAAAAAAAKAAUAAgABAAEAAAAKAAYAAgABAAEAAAAKAAcAAgABAAEAAAAKAAgAAgABAAEAAAAKAAkAAgABAAEAAAAKAAoAAgABAAEAAAAKAAsAAgABAAEAAAALAAQAAgABAAAAAAALAAUAAgABAAEAAAALAAYAAgABAAEAAAALAAcAAgABAAEAAAALAAgAAgABAAEAAAALAAkAAgABAAEAAAALAAoAAgABAAEAAAALAAsAAgABAAEAAAAMAAQAAgACAAAAAAAMAAUAAgACAAEAAAAMAAYAAgACAAEAAAAMAAcAAgACAAEAAAAMAAgAAgACAAEAAAAMAAkAAgACAAEAAAAMAAoAAgACAAEAAAAMAAsAAgACAAIAAAAHAAwAAgABAAEAAAA=")
 tile_set = SubResource("TileSet_f7kyo")
 
@@ -459,12 +460,12 @@ tile_set = SubResource("TileSet_f7kyo")
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="door_left" parent="Doors" instance=ExtResource("6_d2wjv")]
+[node name="door_left" parent="Doors" instance=ExtResource("8_aj8yn")]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(112, 195)
 inside_door = true
 target_scene = "res://Scenes/main_game.tscn"
-target_door = "main_L"
+target_door = "main_D"
 
 [node name="SpawnPoint" parent="Doors/door_left" index="0"]
 position = Vector2(0, -25)
@@ -474,31 +475,36 @@ shape = SubResource("RectangleShape2D_hvm5p")
 
 [node name="Pickables" type="Node2D" parent="."]
 
-[node name="InventoryItem" parent="Pickables" instance=ExtResource("9_toe6u")]
+[node name="InventoryItem" parent="Pickables" instance=ExtResource("9_dewpj")]
 position = Vector2(37, 139)
-item_id = "olives"
-uuid = "26369471874736"
+item_id = "chili"
+uuid = "25516769869256"
 
-[node name="InventoryItem2" parent="Pickables" instance=ExtResource("9_toe6u")]
+[node name="InventoryItem2" parent="Pickables" instance=ExtResource("9_dewpj")]
 position = Vector2(59, 170)
-item_id = "orange"
-uuid = "26369522205638"
-
-[node name="InventoryItem3" parent="Pickables" instance=ExtResource("9_toe6u")]
-position = Vector2(134, 142)
 item_id = "signalisation"
-uuid = "26369572537314"
+uuid = "25516820199567"
+
+[node name="InventoryItem3" parent="Pickables" instance=ExtResource("9_dewpj")]
+position = Vector2(134, 142)
+item_id = "token"
+uuid = "25516870533482"
+
+[node name="InventoryItem4" parent="Pickables" instance=ExtResource("9_dewpj")]
+position = Vector2(75, 89)
+item_id = "olives"
+uuid = "25516920862364"
 
 [node name="Interactables" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Bed" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(38, 98)
-texture = ExtResource("9_jjcf3")
+[node name="Bed" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(158, 87)
+texture = ExtResource("7_k0k4s")
 offset = Vector2(0, -4)
 hframes = 9
 vframes = 4
-frame = 9
+frame = 10
 
 [node name="Interactable" parent="Interactables/Bed" index="0"]
 position = Vector2(0, -4)
@@ -515,9 +521,32 @@ position = Vector2(0, -4)
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_05mjf")
 
-[node name="Drawer" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(54, 88)
-texture = ExtResource("10_7mvu1")
+[node name="Bed2" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(122, 87)
+texture = ExtResource("7_k0k4s")
+offset = Vector2(0, -4)
+hframes = 9
+vframes = 4
+frame = 10
+
+[node name="Interactable" parent="Interactables/Bed2" index="0"]
+position = Vector2(0, -4)
+interaction_line = "Я пока не хочу спать."
+
+[node name="CollisionShape2D" parent="Interactables/Bed2/Interactable" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_gtpri")
+
+[node name="RigidBody2D" parent="Interactables/Bed2" index="1"]
+position = Vector2(0, -4)
+
+[node name="CollisionShape2D" parent="Interactables/Bed2/RigidBody2D" index="0"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_05mjf")
+
+[node name="Drawer" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(140, 80)
+texture = ExtResource("11_onoxw")
 offset = Vector2(0, -4)
 
 [node name="Interactable" parent="Interactables/Drawer" index="0"]
@@ -535,9 +564,9 @@ position = Vector2(0, -3)
 position = Vector2(0, 2.75)
 shape = SubResource("RectangleShape2D_72qiq")
 
-[node name="Table" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(134, 116)
-texture = ExtResource("11_rjlvv")
+[node name="Table" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(76, 109.5)
+texture = ExtResource("12_vsvw7")
 offset = Vector2(0, -4)
 
 [node name="Interactable" parent="Interactables/Table" index="0"]
@@ -551,25 +580,29 @@ shape = SubResource("RectangleShape2D_hnl7i")
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_5wd7k")
 
-[node name="Table2" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(156, 160)
-texture = ExtResource("12_550fi")
+[node name="Chair3" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(76, 120.5)
+texture = ExtResource("16_d8rxd")
 offset = Vector2(0, -4)
 
-[node name="Interactable" parent="Interactables/Table2" index="0"]
-interaction_line = "Сейчас бы чайку с бутембромдиками."
+[node name="Interactable" parent="Interactables/Chair3" index="0"]
+position = Vector2(0, -4)
+interaction_line = "Стул!"
 
-[node name="CollisionShape2D" parent="Interactables/Table2/Interactable" index="0"]
-position = Vector2(0, -3.25)
-shape = SubResource("RectangleShape2D_nvtm7")
+[node name="CollisionShape2D" parent="Interactables/Chair3/Interactable" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_uj2it")
 
-[node name="CollisionShape2D" parent="Interactables/Table2/RigidBody2D" index="0"]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_balvk")
+[node name="RigidBody2D" parent="Interactables/Chair3" index="1"]
+position = Vector2(0, -4)
 
-[node name="Chair" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(119, 117)
-texture = ExtResource("13_o36gp")
+[node name="CollisionShape2D" parent="Interactables/Chair3/RigidBody2D" index="0"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_o3qet")
+
+[node name="Chair" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(61, 110.5)
+texture = ExtResource("14_cxcf5")
 offset = Vector2(0, -4)
 
 [node name="Interactable" parent="Interactables/Chair" index="0"]
@@ -583,9 +616,9 @@ shape = SubResource("RectangleShape2D_uj2it")
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_o3qet")
 
-[node name="Chair4" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(148, 117)
-texture = ExtResource("13_o36gp")
+[node name="Chair4" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(90, 110.5)
+texture = ExtResource("14_cxcf5")
 offset = Vector2(0, -4)
 flip_h = true
 
@@ -600,9 +633,25 @@ shape = SubResource("RectangleShape2D_uj2it")
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_o3qet")
 
-[node name="Chair6" parent="Interactables" instance=ExtResource("8_i5gmn")]
+[node name="Table2" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(156, 160)
+texture = ExtResource("13_688g0")
+offset = Vector2(0, -4)
+
+[node name="Interactable" parent="Interactables/Table2" index="0"]
+interaction_line = "Сейчас бы чайку с бутембромдиками."
+
+[node name="CollisionShape2D" parent="Interactables/Table2/Interactable" index="0"]
+position = Vector2(0, -3.25)
+shape = SubResource("RectangleShape2D_nvtm7")
+
+[node name="CollisionShape2D" parent="Interactables/Table2/RigidBody2D" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_balvk")
+
+[node name="Chair6" parent="Interactables" instance=ExtResource("10_vlybe")]
 position = Vector2(168, 159)
-texture = ExtResource("13_o36gp")
+texture = ExtResource("14_cxcf5")
 offset = Vector2(0, -4)
 flip_h = true
 
@@ -621,29 +670,9 @@ position = Vector2(0, -4)
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_o3qet")
 
-[node name="Chair2" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(134, 102)
-texture = ExtResource("14_60f2t")
-offset = Vector2(0, -4)
-
-[node name="Interactable" parent="Interactables/Chair2" index="0"]
-position = Vector2(0, -4)
-interaction_line = "Стул..."
-
-[node name="CollisionShape2D" parent="Interactables/Chair2/Interactable" index="0"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_uj2it")
-
-[node name="RigidBody2D" parent="Interactables/Chair2" index="1"]
-position = Vector2(0, -4)
-
-[node name="CollisionShape2D" parent="Interactables/Chair2/RigidBody2D" index="0"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_o3qet")
-
-[node name="Chair5" parent="Interactables" instance=ExtResource("8_i5gmn")]
+[node name="Chair5" parent="Interactables" instance=ExtResource("10_vlybe")]
 position = Vector2(156, 147)
-texture = ExtResource("14_60f2t")
+texture = ExtResource("15_v7k0m")
 offset = Vector2(0, -4)
 
 [node name="Interactable" parent="Interactables/Chair5" index="0"]
@@ -661,29 +690,9 @@ position = Vector2(0, -4)
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_o3qet")
 
-[node name="Chair3" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(134, 127)
-texture = ExtResource("15_tl5ew")
-offset = Vector2(0, -4)
-
-[node name="Interactable" parent="Interactables/Chair3" index="0"]
-position = Vector2(0, -4)
-interaction_line = "Стул!"
-
-[node name="CollisionShape2D" parent="Interactables/Chair3/Interactable" index="0"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_uj2it")
-
-[node name="RigidBody2D" parent="Interactables/Chair3" index="1"]
-position = Vector2(0, -4)
-
-[node name="CollisionShape2D" parent="Interactables/Chair3/RigidBody2D" index="0"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_o3qet")
-
-[node name="Chest" parent="Interactables" instance=ExtResource("8_i5gmn")]
-position = Vector2(189, 79)
-texture = ExtResource("16_x5ism")
+[node name="Chest" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(31, 84)
+texture = ExtResource("17_kqvg2")
 offset = Vector2(0, -4)
 hframes = 4
 vframes = 2
@@ -703,26 +712,49 @@ position = Vector2(0, -3)
 position = Vector2(-6, 3.75)
 shape = SubResource("RectangleShape2D_1cr0x")
 
+[node name="Chest2" parent="Interactables" instance=ExtResource("10_vlybe")]
+position = Vector2(190, 83)
+texture = ExtResource("17_kqvg2")
+offset = Vector2(0, -4)
+hframes = 4
+vframes = 2
+
+[node name="Interactable" parent="Interactables/Chest2" index="0"]
+position = Vector2(0, -3)
+interaction_line = "Хм... закрыт. Но ключ от дома тут точно не подойдет."
+
+[node name="CollisionShape2D" parent="Interactables/Chest2/Interactable" index="0"]
+position = Vector2(-7, 2)
+shape = SubResource("RectangleShape2D_jdvfy")
+
+[node name="RigidBody2D" parent="Interactables/Chest2" index="1"]
+position = Vector2(0, -3)
+
+[node name="CollisionShape2D" parent="Interactables/Chest2/RigidBody2D" index="0"]
+position = Vector2(-6, 3.75)
+shape = SubResource("RectangleShape2D_1cr0x")
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment"]
+self_modulate = Color(0, 0.560799, 0.998061, 1)
 y_sort_enabled = true
 position = Vector2(112, 198)
-texture = ExtResource("11_qvhyf")
+texture = ExtResource("18_l5m1m")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Environment"]
 y_sort_enabled = true
-position = Vector2(56, 112)
-texture = ExtResource("12_07cv5")
+position = Vector2(140, 94)
+texture = ExtResource("19_dnki3")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Environment"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(134, 109)
-texture = ExtResource("9_jjcf3")
+position = Vector2(156, 153)
+texture = ExtResource("7_k0k4s")
 hframes = 9
 vframes = 6
-frame = 3
+frame = 4
 
 [node name="Boundaries" type="Node2D" parent="."]
 
@@ -742,13 +774,14 @@ shape = SubResource("RectangleShape2D_14vks")
 
 [editable path="Doors/door_left"]
 [editable path="Interactables/Bed"]
+[editable path="Interactables/Bed2"]
 [editable path="Interactables/Drawer"]
 [editable path="Interactables/Table"]
-[editable path="Interactables/Table2"]
+[editable path="Interactables/Chair3"]
 [editable path="Interactables/Chair"]
 [editable path="Interactables/Chair4"]
+[editable path="Interactables/Table2"]
 [editable path="Interactables/Chair6"]
-[editable path="Interactables/Chair2"]
 [editable path="Interactables/Chair5"]
-[editable path="Interactables/Chair3"]
 [editable path="Interactables/Chest"]
+[editable path="Interactables/Chest2"]

@@ -22,6 +22,10 @@ var picked_up: bool = false
 func _ready() -> void:
 	if Engine.is_editor_hint(): # Иначе прокается из-за @tool
 		return
+	
+	if uuid == "":
+		printerr("Forgot to set uuid! name: ", name)
+
 	if DataPersistence.is_picked_up(uuid):
 		load_info()
 		return

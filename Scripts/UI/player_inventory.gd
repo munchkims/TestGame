@@ -25,6 +25,7 @@ func create_player_inventory(storage: ItemStorage) -> void:
 	discard_btn = add_buttons("Выбросить", _on_discard_button_pressed)
 	player_inventory.new_selection.connect(_on_next_slot_selected)
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Inv") and not inventory_blocked:
 		_close_and_open_inv()
