@@ -9,6 +9,7 @@ class_name Player
 @onready var health_component: HealthComponent = $HealthComponent
 
 signal player_dead
+var is_dead: bool = false
 
 
 var stored_door: Door
@@ -77,6 +78,16 @@ func change_max_health(amount: int) -> void:
 	health_component.change_max_health(amount)
 
 
+func disable_input() -> void:
+	player_movement.set_player_movement(true) # Так как UI посылает true, когда открыт, но при большем времени я бы переделала конечно
+	player_storage_control.inventory_blocked = true
+
+
+func enable_input() -> void:
+	player_movement.set_player_movement(false)
+	player_storage_control.inventory_blocked = false
+
+
 func door_popup(door: Door) -> void:
 	stored_door = door
 	player_main_HUD.show_door_popup()
@@ -95,4 +106,6 @@ func _on_door_answer(yes_open: bool) -> void:
 # Возможно, конечно, перезагрузку вручную сделать
 func _on_health_depleted() -> void:
 	print("you die!")
+	is_dead = true
+	disable_input()
 	player_dead.emit()

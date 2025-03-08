@@ -95,7 +95,8 @@ func is_near_interactable() -> String:
 
 func set_player_movement(stop_movement: bool) -> void:
 	set_physics_process(!stop_movement) # Обратное, так как везде UI нам посылает true, если он открыт
-
+	print("physics process is set to: ", !stop_movement)
+	state = "idle"
 
 func get_player_position() -> Vector2:
 	return global_position

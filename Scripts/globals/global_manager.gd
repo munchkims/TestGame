@@ -59,10 +59,7 @@ func amulet() -> void:
 
 
 func reset() -> void:
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_game.tscn")
-	# Так как глобальные скрипты не перезагружаются
-	DataPersistence.reset()
-	SceneTransitionManager.reset()
+	SceneTransitionManager.reload_game()
 	# Не можем сразу игрока получить, так как надо подождать, пока все инициализируется
 	needs_reload = true
 	

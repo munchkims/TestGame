@@ -10,6 +10,37 @@ var in_transition: bool = false
 
 
 func change_scene(target_scene: PackedScene, target_door: String) -> void:
+	var current_scene: Node = get_tree().current_scene
+	saved_player = current_scene.get_node("Player")
+	saved_player.disable_input()
+	anim_player.play("fade_in")
+	await anim_player.animation_finished
+	current_scene.remove_child(saved_player)
+	saved_door = target_door
+	get_tree().change_scene_to_packed(target_scene)
+	anim_player.play("fade_out")
+	await anim_player.animation_finished
+	saved_player.enable_input()
+
+
+func reload_game() -> void:
+	anim_player.play("fade_in")
+	await anim_player.animation_finished
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/main_game.tscn")
+	# Так как глобальные скрипты не перезагружаются
+	DataPersistence.reset()
+	reset()
+	anim_player.play("fade_out")
+	
+
+func reset() -> void:
+	saved_player = null
+	saved_door = ""
+	in_transition = false
+
+# Код ниже - это моя попытка сделать переход сцены без await, так как я слышала, что использовать await нежелательно
+# Несмотря на то, что код работает, он все же медленнее функции change_scene
+func change_level_scene(target_scene: PackedScene, target_door: String) -> void:
 	if in_transition:
 		return
 	in_transition = true
@@ -27,6 +58,7 @@ func _on_animation_finished(animation: String, target_scene: PackedScene, target
 	if animation == "fade_in":
 		var current_scene: Node = get_tree().current_scene
 		saved_player = current_scene.get_node("Player")
+		saved_player.disable_movement()
 		current_scene.remove_child(saved_player)
 		saved_door = target_door
 		get_tree().change_scene_to_packed(target_scene)
@@ -35,11 +67,6 @@ func _on_animation_finished(animation: String, target_scene: PackedScene, target
 	else:
 		#print("disconnected the anim player")
 		anim_player.animation_finished.disconnect(on_finished)
+		saved_player.enable_movement()
 		on_finished = Callable()
 		in_transition = false
-
-
-func reset() -> void:
-	saved_player = null
-	saved_door = ""
-	in_transition = false
