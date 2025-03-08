@@ -1,4 +1,5 @@
 extends Control
+class_name PlayerMainHUD
 
 @export var popup_time: float = 4.0
 
@@ -10,10 +11,21 @@ extends Control
 @onready var door_popup: NinePatchRect = $DoorPopUp
 @onready var buttons: Array = [$DoorPopUp/HBoxContainer/Yes, $DoorPopUp/HBoxContainer/No]
 
-signal popup_window(is_open: bool)
+@onready var player_inv: Control = $PlayerInventory
+
+enum HUD_State {NONE, DOOR_POPUP, IN_INVENTORY}
+
+var current_state: HUD_State = HUD_State.NONE
+var input_disabled: bool = false
+
 signal door_answer(yes: bool)
+signal ui_state_changed(current_state: HUD_State)
 
 var selected_index: int = 0
+
+
+func _ready() -> void:
+	player_inv.inventory_open.connect(_on_inventory_state_changed)
 
 
 func update_health(health: int, max_health: bool = false) -> void:
@@ -46,28 +58,59 @@ func _on_popup_button_pressed(yes_open: bool) -> void:
 
 
 func show_door_popup() -> void:
-	popup_window.emit(true) # На всякий случай последовательность поменяла местами, если вдруг именно в эту миллисекунду игрок откроет инвентарь
+	if current_state == HUD_State.IN_INVENTORY: # На всякий случай, если игрок именно в эту миллисекунду нажмет Q
+		player_inv.close_and_open_inv()
+	current_state = HUD_State.DOOR_POPUP
 	selected_index = 0
 	highlight_selected_button()
 	door_popup.visible = true
+	ui_state_changed.emit(current_state)
 
 
 func close_door_popup() -> void:
 	door_popup.visible = false
-	popup_window.emit(false)
+	current_state = HUD_State.NONE
+	ui_state_changed.emit(current_state)
 
 
 func _input(event: InputEvent) -> void:
-	if not door_popup.visible:
+	if input_disabled:
 		return
-	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
-		selected_index = 1 - selected_index
-		highlight_selected_button()
-	elif event.is_action_pressed("ui_accept"):
-		buttons[selected_index].button_pressed = true
-		buttons[selected_index].emit_signal("pressed")
+	match current_state:
+		HUD_State.IN_INVENTORY, HUD_State.NONE:
+			if event.is_action_pressed("Inv"):
+				player_inv.close_and_open_inv()
+		HUD_State.DOOR_POPUP:
+			if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
+				selected_index = 1 - selected_index
+				highlight_selected_button()
+			elif event.is_action_pressed("ui_accept"):
+				buttons[selected_index].button_pressed = true
+				buttons[selected_index].emit_signal("pressed")
+
+	# if event.is_action_pressed("Inv"):
+	# 	player_inv.close_and_open_inv()
+	# if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
+	# 	selected_index = 1 - selected_index
+	# 	highlight_selected_button()
+	# elif event.is_action_pressed("ui_accept"):
+	# 	buttons[selected_index].button_pressed = true
+	# 	buttons[selected_index].emit_signal("pressed")
 
 
 func highlight_selected_button() -> void:
 	buttons[selected_index].modulate = Color(1.2, 1.2, 1.2, 1)
 	buttons[1 - selected_index].modulate = Color(1, 1, 1, 1)
+
+
+func _on_inventory_state_changed(is_open: bool) -> void:
+	if is_open:
+		current_state = HUD_State.IN_INVENTORY
+		ui_state_changed.emit(current_state)
+	else:
+		current_state = HUD_State.NONE
+		ui_state_changed.emit(current_state)
+
+
+func disable_input(disable: bool) -> void:
+	input_disabled = disable

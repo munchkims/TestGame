@@ -96,7 +96,7 @@ item_id = "orange"
 uuid = "8139013421226"
 
 [node name="InventoryItem11" parent="Pickables" instance=ExtResource("5_12s2r")]
-position = Vector2(607, 316)
+position = Vector2(606, 336)
 item_id = "orange"
 uuid = "8139063752240"
 
@@ -106,7 +106,7 @@ item_id = "chili"
 uuid = "8139114084848"
 
 [node name="InventoryItem5" parent="Pickables" instance=ExtResource("5_12s2r")]
-position = Vector2(480, 272)
+position = Vector2(493, 279)
 item_id = "token"
 uuid = "8139214747583"
 

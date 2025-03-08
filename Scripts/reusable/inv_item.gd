@@ -11,7 +11,8 @@ var is_spawned: bool = false
 
 func _ready() -> void:
 	super._ready()
-	# Вообще я могу поменять item_storage на Словарь (Dictionary), чтобы вообще не дублировать, но я не была уверена, стоит ли, так как в задании этого не указано
+	# Вообще я могу поменять item_storage на Словарь (Dictionary), чтобы вообще не дублировать, а увеличивать количество (stack)
+	# но я не была уверена, стоит ли, так как в задании этого не указано
 	if is_spawned:
 		return
 	item_data = ItemDb.get_item(item_id).duplicate(true)

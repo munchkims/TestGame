@@ -21,7 +21,7 @@ func _fetch_player() -> Player:
 	if main_game:
 		var new_player: Player = main_game.get_node_or_null("Player")
 		if new_player:
-			new_player.player_dead.connect(_on_player_dead)
+			new_player.changed_state.connect(_on_player_changed_state)
 			return new_player
 	return null
 
@@ -78,5 +78,6 @@ func is_on_floor_check(pos: Vector2) -> bool:
 	return source_id != -1
 
 
-func _on_player_dead() -> void:
-	reset()
+func _on_player_changed_state(p_state: Player.Player_State) -> void:
+	if p_state == Player.Player_State.DEAD:
+		reset()

@@ -38,6 +38,7 @@ func reset() -> void:
 	saved_door = ""
 	in_transition = false
 
+
 # Код ниже - это моя попытка сделать переход сцены без await, так как я слышала, что использовать await нежелательно
 # Несмотря на то, что код работает, он все же медленнее функции change_scene
 func change_level_scene(target_scene: PackedScene, target_door: String) -> void:

@@ -207,7 +207,8 @@ script = ExtResource("6_vwrky")
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
-[node name="PlayerInventory" parent="PlayerHUD" instance=ExtResource("6_quvdh")]
-
 [node name="MainHUD" parent="PlayerHUD" instance=ExtResource("7_eacli")]
 popup_time = 2.0
+
+[node name="PlayerInventory" parent="PlayerHUD/MainHUD" instance=ExtResource("6_quvdh")]
+layout_mode = 1

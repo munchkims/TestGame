@@ -12,7 +12,6 @@ signal item_removed(used_item: Item)
 var use_btn: ActionButton
 var discard_btn: ActionButton
 
-var inventory_blocked: bool = false
 
 var item_spawn_radius: float = 25.0
 
@@ -24,11 +23,6 @@ func create_player_inventory(storage: ItemStorage) -> void:
 	use_btn = add_buttons("Использовать", _on_use_button_pressed)
 	discard_btn = add_buttons("Выбросить", _on_discard_button_pressed)
 	player_inventory.new_selection.connect(_on_next_slot_selected)
-
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Inv") and not inventory_blocked:
-		_close_and_open_inv()
 
 
 func add_buttons(btn_name: String, btn_func: Callable) -> ActionButton:
@@ -47,7 +41,7 @@ func _on_use_button_pressed() -> void:
 	selected_item.use_func.call()
 	if not selected_item.is_reusable:
 		item_removed.emit(selected_item)
-	_close_and_open_inv()
+	close_and_open_inv()
 
 
 func _on_discard_button_pressed() -> void:
@@ -70,7 +64,7 @@ func _on_discard_button_pressed() -> void:
 	spawned_item.global_position = pos
 	DataPersistence.save_spawned_item(spawned_item.uuid, spawned_item.item_data, spawned_item.global_position)
 	item_removed.emit(selected_item)
-	_close_and_open_inv()
+	close_and_open_inv()
 	
 
 func _on_next_slot_selected() -> void:
@@ -82,16 +76,9 @@ func _on_next_slot_selected() -> void:
 		use_btn.disabled = true
 	
 
-func _close_and_open_inv() -> void:
+func close_and_open_inv() -> void:
 	player_inventory.toggle_visibility()
 	inventory_open.emit(player_inventory.visible)
-
-
-func _door_popup_open(is_open: bool) -> void:
-	inventory_blocked = is_open
-	# Временное решение, на случай если вдруг прям перед тем, как появится окно, игрок нажмет Q
-	if inventory_blocked and player_inventory.visible == true:
-		player_inventory.toggle_visibility()
 
 
 func _choose_spawn_point(player_body: CharacterBody2D, radius: float) -> Vector2:

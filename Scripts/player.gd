@@ -3,14 +3,16 @@ class_name Player
 
 @onready var player_stats: PlayerStats = $PlayerStats
 @onready var player_storage: ItemStorage = $PlayerStorage
-@onready var player_storage_control: Control = $PlayerHUD/PlayerInventory
+@onready var player_storage_control: Control = $PlayerHUD/MainHUD/PlayerInventory
 @onready var player_main_HUD: Control = $PlayerHUD/MainHUD
 @onready var player_movement: CharacterBody2D = $PlayerMovement
 @onready var health_component: HealthComponent = $HealthComponent
 
-signal player_dead
-var is_dead: bool = false
-
+#signal player_dead
+# Мне нужно подписаться под hud state UI и от этого менять states а потом я подпишусь player movement на player state и от этого будет зависеть что происходит
+signal changed_state(current_state: Player_State)
+enum Player_State {ALIVE, UI_OPEN, DEAD}
+var current_state: Player_State = Player_State.ALIVE
 
 var stored_door: Door
 
@@ -23,10 +25,12 @@ func _ready() -> void:
 	health_component.health_changed.connect(Callable(player_main_HUD, "update_health"))
 	player_stats.key_number_changed.connect(Callable(player_main_HUD, "update_key_number"))
 	player_main_HUD.update_key_number(player_stats.keys)
-	player_main_HUD.popup_window.connect(Callable(player_storage_control, "_door_popup_open"))
+	#player_main_HUD.popup_window.connect(Callable(player_storage_control, "_door_popup_open"))
 	player_main_HUD.door_answer.connect(_on_door_answer)
-	player_main_HUD.popup_window.connect(Callable(player_movement, "set_player_movement"))
-	player_storage_control.inventory_open.connect(Callable(player_movement, "set_player_movement"))
+	player_main_HUD.ui_state_changed.connect(_on_ui_changed)
+	changed_state.connect(Callable(player_movement, "_on_player_state_changed"))
+	#player_main_HUD.popup_window.connect(Callable(player_movement, "set_player_movement"))
+	#player_storage_control.inventory_open.connect(Callable(player_movement, "set_player_movement"))
 	
 
 func has_key() -> bool:
@@ -59,6 +63,18 @@ func _on_item_removed(item_removed: Item) -> void:
 	player_storage.remove_item(item_removed)
 
 
+func _on_ui_changed(hud_state: PlayerMainHUD.HUD_State) -> void:
+	if current_state == Player_State.DEAD:
+		return
+	match hud_state:
+		PlayerMainHUD.HUD_State.DOOR_POPUP, PlayerMainHUD.HUD_State.IN_INVENTORY:
+			current_state = Player_State.UI_OPEN
+			changed_state.emit(current_state)
+		PlayerMainHUD.HUD_State.NONE:
+			current_state = Player_State.ALIVE
+			changed_state.emit(current_state)
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Interact"):
 		# Временное решение, а так при большем количестве времени я бы централизовала UI, чтобы максимально было эффективно переключаться
@@ -79,13 +95,13 @@ func change_max_health(amount: int) -> void:
 
 
 func disable_input() -> void:
-	player_movement.set_player_movement(true) # Так как UI посылает true, когда открыт, но при большем времени я бы переделала конечно
-	player_storage_control.inventory_blocked = true
+	player_movement.set_player_movement(false)
+	player_main_HUD.disable_input(true)
 
 
 func enable_input() -> void:
-	player_movement.set_player_movement(false)
-	player_storage_control.inventory_blocked = false
+	player_movement.set_player_movement(true)
+	player_main_HUD.disable_input(false)
 
 
 func door_popup(door: Door) -> void:
@@ -106,6 +122,6 @@ func _on_door_answer(yes_open: bool) -> void:
 # Возможно, конечно, перезагрузку вручную сделать
 func _on_health_depleted() -> void:
 	print("you die!")
-	is_dead = true
 	disable_input()
-	player_dead.emit()
+	current_state = Player_State.DEAD
+	changed_state.emit(current_state)

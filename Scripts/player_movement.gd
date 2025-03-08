@@ -93,9 +93,9 @@ func is_near_interactable() -> String:
 	return ""
 
 
-func set_player_movement(stop_movement: bool) -> void:
-	set_physics_process(!stop_movement) # Обратное, так как везде UI нам посылает true, если он открыт
-	print("physics process is set to: ", !stop_movement)
+func set_player_movement(can_move: bool) -> void:
+	set_physics_process(can_move)
+	print("physics process is set to: ", can_move)
 	state = "idle"
 
 func get_player_position() -> Vector2:
@@ -136,3 +136,11 @@ func is_position_free(pos: Vector2, include_areas: bool = true) -> bool:
 
 	var res: Array = space_state.intersect_point(query)
 	return res.is_empty() and GlobalManager.is_on_floor_check(pos)
+
+
+func _on_player_state_changed(p_state: Player.Player_State) -> void:
+	match p_state:
+		Player.Player_State.UI_OPEN, Player.Player_State.DEAD:
+			set_player_movement(false)
+		Player.Player_State.ALIVE:
+			set_player_movement(true)
