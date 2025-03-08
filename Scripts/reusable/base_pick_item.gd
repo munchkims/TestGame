@@ -2,6 +2,8 @@
 extends Sprite2D
 class_name BasePickItem
 
+# Данный класс - родитель для классов InventoryItem и DoorKey, так как много одного функционала (uuid, подбор игроком, сохранение)
+
 # UUID для сохранения
 @export var uuid: String = ""
 
@@ -25,15 +27,16 @@ func _ready() -> void:
 		return
 	
 	if uuid == "":
-		printerr("Forgot to set uuid! name: ", name)
+		printerr("Forgot to set uuid! name: ", name) # Напоминание, так как uuid надо добавлять еще в редакторе, до запуска игры, иначе не сохранится
 
-	if DataPersistence.is_picked_up(uuid):
-		load_info()
+	if DataPersistence.is_picked_up(uuid): # Если по uuid оказывается, что уже подбирали предмет, то удаляем его
+		_load_info()
 		return
 
 	pickable_area.body_entered.connect(_on_body_entered)
 	
 
+# Так как базовый класс не будет использован сам по себе, очень важно определить логику для наследников
 func _on_player_entered(_player: Player) -> void:
 	printerr("This function should be overwritten in inheriting classes!")
 
@@ -44,18 +47,18 @@ func _on_body_entered(body: Node2D) -> void:
 		_on_player_entered(parent)
 
 
-func load_info() -> void:
+func _load_info() -> void:
 	picked_up = true
 	queue_free()
 
 
-func save() -> void:
+func _save() -> void:
 	DataPersistence.register_item(uuid, picked_up)
 
 
 # Теперь когда мы удаляем предмет, он сам и его статус сохраняется
 func _exit_tree() -> void:
-	save()
+	_save()
 
 
 # Так как в GODOT нет build-in функции для генерации UUID, это временное решение чисто для тестового задания (а так можно либо самим написать, либо использовать плагин) 

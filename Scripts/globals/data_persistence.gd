@@ -33,7 +33,10 @@ func is_picked_up(uuid: String) -> bool:
 	else:
 		return tracked_items[uuid]
 
-
+# Как устроен данный словарь: есть общий словарь с file path помещений (комнат-сцен) - это ключи
+# Value в словаре - это список. Данный список состоит из словарей, которые держут информацию о засповненном предмете (uuid, данные о предмете и его позиция в мире)
+# Данным списком пользуется каждая комната при загрузке, и проверяет, есть ли там предметы, которые надо засповнить с определенными данными и позицией
+# Если предмет засповнен и потом подобран, то он просто удаляется из списка в remove_spawned_item
 func save_spawned_item(uuid: String, item_data: Item, pos: Vector2) -> void:
 	var current_lvl: String = get_tree().current_scene.scene_file_path
 	if not spawned_items.has(current_lvl):

@@ -1,6 +1,8 @@
 extends Resource
 class_name Item
 
+# Просто контейнер для информации, которую будут использовать все остальные скрипты
+
 @export var item_id: String
 @export var item_name: String
 @export var description: String

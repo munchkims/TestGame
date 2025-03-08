@@ -3,7 +3,7 @@ extends TextureRect
 @onready var item_pic: TextureRect = $ItemPic
 var item: Item = null
 
-
+# Функция, чтобы хранить данные о предмете
 func set_item(new_item: Item) -> void:
 	item = new_item
 	if item:

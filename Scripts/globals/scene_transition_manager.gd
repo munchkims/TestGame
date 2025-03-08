@@ -9,6 +9,7 @@ var saved_door: String
 var in_transition: bool = false
 
 
+# При переходе в дом или из него
 func change_scene(target_scene: PackedScene, target_door: String) -> void:
 	var current_scene: Node = get_tree().current_scene
 	saved_player = current_scene.get_node("Player")
@@ -23,6 +24,7 @@ func change_scene(target_scene: PackedScene, target_door: String) -> void:
 	saved_player.enable_input()
 
 
+# При перезагрузке игры
 func reload_game() -> void:
 	anim_player.play("fade_in")
 	await anim_player.animation_finished

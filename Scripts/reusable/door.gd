@@ -1,6 +1,10 @@
 extends Sprite2D
 class_name Door
 
+# Данный скрипт нуждается в Path (копируем из res://), на какой уровень мы отправляем игрока
+# Также нужно название двери на новом уровне: так как каждый уровень имеет в стуктуре контейнер для дверей Doors, на случай если их несколько
+# Но не все название, а его часть, приставка (то, что идет после door_)
+
 @export var inside_door: bool
 @export var target_scene: String
 @export var target_door: String
@@ -16,10 +20,10 @@ func _ready() -> void:
 	if inside_door:
 		open()
 	else:
-		load_info()
+		_load_info()
 
 
-func load_info() -> void:
+func _load_info() -> void:
 	if DataPersistence.is_door_open(get_path()):
 		open()
 
@@ -35,6 +39,7 @@ func _on_body_entered(body: Node2D) -> void:
 			return
 
 
+# Данную функцию вызывает игрок, если отвечает "да" на вопрос, использовать ли ключ
 func enter() -> void:
 	open()
 	DataPersistence.save_open_door(get_path())

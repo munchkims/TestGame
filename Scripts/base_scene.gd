@@ -1,6 +1,7 @@
 extends Node2D
 class_name BaseScene
 
+# Мы проверяем слой пола, чтобы знать границы уровня (для телепортации и сповна предметов)
 @export var level_floor: NodePath
 
 @onready var player: Player = get_node_or_null("Player")
@@ -15,13 +16,14 @@ func _ready() -> void:
 	tile_layer = get_node(level_floor)
 	if SceneTransitionManager.saved_player:
 		if player:
-			# Otherwise it gets freed at the end of the frame, causing the naming issue
+			# Сначала удаляем игрока из детей вообще, прежде чем удалить инстацию, а то иначе конфликты с именем происходят
 			remove_child(player)
 			player.queue_free()
 
 		player = SceneTransitionManager.saved_player
 		add_child(player)
 		player.name = "Player"
+		# Проверяем, есть ли в глобальном скрипте сохраненная дверь: значит, игрок пришел на этот уровень, а не начал игру
 		if SceneTransitionManager.saved_door:
 			var door: Node = door_cont.get_node("door_" + SceneTransitionManager.saved_door)
 			var spawn_point: Node = door.get_node("SpawnPoint")
@@ -32,9 +34,12 @@ func _ready() -> void:
 			player_body.animate()
 			
 	
+	# При перезагрузке уровня, так как GlobalManager требует инстанцию игрока, и нужно подождать, чтобы он точно прогрузился
 	if GlobalManager.needs_reload:
 		GlobalManager.post_scene_load()
+
 	
+	# Если вещи, которые игрок выкинул из инвентаря, он снова не подобрал и ушел, они остаются в DataPersistence, и если есть такие вещи, то их обратно подгружаем
 	var spawned_items: Array = DataPersistence.check_spawned_items()
 	if not spawned_items.is_empty():
 		for item: Variant in spawned_items:

@@ -1,5 +1,8 @@
 extends Node
 
+# База данных о предметах. Сделана таким образом, чтобы можно было легко менять названия и описания, ну и некоторые свойства как usable/reusable
+# Глобальный скрипт
+
 const TEXTURE_PATH: String = "res://Art/Items/"
 const JSON_PATH: String = "res://Data/ItemData.json"
 
@@ -10,6 +13,9 @@ func _ready() -> void:
     load_items()
 
 
+# Подгружаем все данные из файла JSON, а также находим соответствующую картинку в TEXTURE_PATH
+# Поэтому важно, чтобы в данной папке были картинки с таким же названием (item_id)
+# Из GlobalManager берем функцию, которую данный предмет будет выполнять. Также используя его id
 func load_items() -> void:
     var file: FileAccess = FileAccess.open(JSON_PATH, FileAccess.READ)
     if file:

@@ -7,7 +7,7 @@ func _ready() -> void:
 	player = _fetch_player()
 	
 
-# Получаем функцию, используя id предмета
+# Получаем функцию использования предмета, используя id предмета
 func item_function(item_name: String) -> Callable:
 	if has_method(item_name):
 		return Callable(self, item_name)
@@ -16,12 +16,13 @@ func item_function(item_name: String) -> Callable:
 		return Callable()
 
 
+# Функция для получения инстанции игрока
 func _fetch_player() -> Player:
 	var main_game: Node = get_tree().get_root().get_node("MainGame")
 	if main_game:
 		var new_player: Player = main_game.get_node_or_null("Player")
 		if new_player:
-			new_player.changed_state.connect(_on_player_changed_state)
+			new_player.changed_state.connect(_on_player_changed_state) # Чтобы знать, если игрок умер
 			return new_player
 	return null
 
@@ -58,17 +59,21 @@ func amulet() -> void:
 	player.change_max_health(1)
 
 
+# При перезагрузке игры
 func reset() -> void:
 	SceneTransitionManager.reload_game()
 	# Не можем сразу игрока получить, так как надо подождать, пока все инициализируется
 	needs_reload = true
 	
 
+# Эту функцию подгружает уже загруженный уровень, так как тогда игрок точно уже инициализирован
 func post_scene_load() -> void:
 	needs_reload = false
 	player = _fetch_player()
 
 
+# Хелпер-функция, помогает нам узнать, позиция находится на полу или нет (чтобы не выкинуть игрока или предмет за пределы уровня)
+# Так как каждый уровень либо наследует, либо напрямую подключен к Base Scene, там есть референс к слою пола, который надо проверить
 func is_on_floor_check(pos: Vector2) -> bool:
 	var current_lvl: Node = get_tree().current_scene
 	var current_floor: TileMapLayer = current_lvl.tile_layer

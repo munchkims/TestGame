@@ -14,18 +14,20 @@ var state: String = "idle"
 
 var min_tp_radius: float = 10.0
 
+
 func _ready() -> void:
 	animate()
 
 
 func _physics_process(delta: float) -> void:
-	move(delta)
+	_move(delta)
 	_cast_ray()
-	if set_state() or set_direction():
+	# Данные функции возвращают bools, чтобы менялась анимация только при изменении в движении
+	if _set_state() or _set_direction():
 		animate()
 
 
-func move(_delta: float) -> void:
+func _move(_delta: float) -> void:
 	direction = Input.get_vector("Left", "Right", "Up", "Down")
 	
 	# Убираем диагональное движение
@@ -37,10 +39,11 @@ func move(_delta: float) -> void:
 
 
 func animate() -> void:
-	char_sprite.play(state + "_" + anim_dir())
+	char_sprite.play(state + "_" + _anim_dir())
 
 
-func set_direction() -> bool:
+# Определяем направление анимации
+func _set_direction() -> bool:
 	var new_dir: Vector2 = cardinal_direction
 	if direction == Vector2.ZERO:
 		return false
@@ -57,7 +60,8 @@ func set_direction() -> bool:
 	return true
 
 
-func set_state() -> bool:
+# Определяем состояние анимации
+func _set_state() -> bool:
 	var new_state: String = "idle" if direction == Vector2.ZERO else "run"
 	if new_state == state:
 		return false
@@ -65,7 +69,7 @@ func set_state() -> bool:
 	return true
 
 
-func anim_dir() -> String:
+func _anim_dir() -> String:
 	match cardinal_direction:
 		Vector2.DOWN:
 			return "down"
@@ -84,6 +88,7 @@ func _cast_ray() -> void:
 	raycast.target_position = cardinal_direction.normalized() * ray_length
 
 
+# Проверяем, если raycast попадает в интерактиный предмет
 func is_near_interactable() -> String:
 	if raycast.is_colliding():
 		var collider: Object = raycast.get_collider()
@@ -95,13 +100,16 @@ func is_near_interactable() -> String:
 
 func set_player_movement(can_move: bool) -> void:
 	set_physics_process(can_move)
-	print("physics process is set to: ", can_move)
+	# Чтобы не оставался в анимации движения, если останавливается
 	state = "idle"
+	animate()
+
 
 func get_player_position() -> Vector2:
 	return global_position
 
 
+# Для телепортации и сповна предметов из инвентаря
 func get_random_position_in_radius(max_radius: float, min_radius: float = min_tp_radius) -> Vector2:
 	if min_radius > max_radius:
 		min_radius = max_radius
@@ -110,6 +118,7 @@ func get_random_position_in_radius(max_radius: float, min_radius: float = min_tp
 	return global_position + Vector2(cos(angle), sin(angle)) * distance
 
 
+# Сама функция телепортации
 func teleport_within_radius(radius: float = base_tp_radius) -> void:
 	var max_attempts: int = 100
 	var attempts: int = 0
@@ -127,6 +136,7 @@ func teleport_within_radius(radius: float = base_tp_radius) -> void:
 		print("Didn't find valid positions for teleporting")
 
 
+# Проверяем, не сталкиваемся ли с чем-либо
 func is_position_free(pos: Vector2, include_areas: bool = true) -> bool:
 	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var query: PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
@@ -135,7 +145,7 @@ func is_position_free(pos: Vector2, include_areas: bool = true) -> bool:
 	query.collide_with_bodies = true
 
 	var res: Array = space_state.intersect_point(query)
-	return res.is_empty() and GlobalManager.is_on_floor_check(pos)
+	return res.is_empty() and GlobalManager.is_on_floor_check(pos) # Разные уровни и разные TileMapLayers, поэтому уже автолоад проверяет комнаты "сверху"
 
 
 func _on_player_state_changed(p_state: Player.Player_State) -> void:

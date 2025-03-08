@@ -48,21 +48,12 @@ func show_pop_up(popup_text: String) -> void:
 	text_pop_up.visible = true
 
 
-func _on_timer_timeout() -> void:
-	text_pop_up.visible = false
-
-
-func _on_popup_button_pressed(yes_open: bool) -> void:
-	close_door_popup()
-	door_answer.emit(yes_open)
-
-
 func show_door_popup() -> void:
 	if current_state == HUD_State.IN_INVENTORY: # На всякий случай, если игрок именно в эту миллисекунду нажмет Q
 		player_inv.close_and_open_inv()
 	current_state = HUD_State.DOOR_POPUP
 	selected_index = 0
-	highlight_selected_button()
+	_highlight_selected_button()
 	door_popup.visible = true
 	ui_state_changed.emit(current_state)
 
@@ -73,6 +64,20 @@ func close_door_popup() -> void:
 	ui_state_changed.emit(current_state)
 
 
+func disable_input(disable: bool) -> void:
+	input_disabled = disable
+
+
+func _on_timer_timeout() -> void:
+	text_pop_up.visible = false
+
+
+func _on_popup_button_pressed(yes_open: bool) -> void:
+	close_door_popup()
+	door_answer.emit(yes_open)
+
+
+# В зависимости от state, мониторим разный input, чтобы нельзя было включить инвентарь, когда появляется окно с вопросом
 func _input(event: InputEvent) -> void:
 	if input_disabled:
 		return
@@ -83,23 +88,13 @@ func _input(event: InputEvent) -> void:
 		HUD_State.DOOR_POPUP:
 			if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
 				selected_index = 1 - selected_index
-				highlight_selected_button()
+				_highlight_selected_button()
 			elif event.is_action_pressed("ui_accept"):
 				buttons[selected_index].button_pressed = true
 				buttons[selected_index].emit_signal("pressed")
 		
 
-	# if event.is_action_pressed("Inv"):
-	# 	player_inv.close_and_open_inv()
-	# if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):
-	# 	selected_index = 1 - selected_index
-	# 	highlight_selected_button()
-	# elif event.is_action_pressed("ui_accept"):
-	# 	buttons[selected_index].button_pressed = true
-	# 	buttons[selected_index].emit_signal("pressed")
-
-
-func highlight_selected_button() -> void:
+func _highlight_selected_button() -> void:
 	buttons[selected_index].modulate = Color(1.2, 1.2, 1.2, 1)
 	buttons[1 - selected_index].modulate = Color(1, 1, 1, 1)
 
@@ -111,7 +106,3 @@ func _on_inventory_state_changed(is_open: bool) -> void:
 	else:
 		current_state = HUD_State.NONE
 		ui_state_changed.emit(current_state)
-
-
-func disable_input(disable: bool) -> void:
-	input_disabled = disable

@@ -47,18 +47,6 @@ func remove_item(item: Item) -> Item:
 		printerr("the item to remove was not found.")
 		return null
 
-	# if index >= 0 and index < storage.size():
-	# 	if storage[index] == null:
-	# 		return null
-	# 	var removed_item: Item = storage[index]
-	# 	storage.remove_at(index)
-	# 	storage.append(null)
-	# 	item_removed.emit(removed_item)
-	# 	return removed_item
-	# else:
-	# 	printerr("index is out of bounds.")
-	# 	return null
-
 
 func resize_storage(new_capacity: int) -> void:
 	if not (0 <= new_capacity and new_capacity <= MAX_CAPACITY):

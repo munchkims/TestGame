@@ -58,6 +58,7 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("Tab"):
 			_exit_button_selection()
 
+
 func select_slot(offset: int) -> void:
 	if slots == null:
 		return
@@ -76,7 +77,7 @@ func select_slot(offset: int) -> void:
 
 
 func _enter_button_selection() -> void:
-	if action_buttons.size() == 0 || selected_index == -1:
+	if action_buttons.size() == 0 || selected_index == -1 || _are_buttons_disabled():
 		return
 	selection_state = SelectionState.BUTTONS
 	selected_button_index = 0
@@ -136,6 +137,7 @@ func add_button(btn_name: String) -> ActionButton:
 	button_container.add_child(new_button)
 	new_button.set_action(btn_name)
 	action_buttons.append(new_button)
+	new_button.disabled = true # Чтобы в начале, когда только открываем инвентарь и еще ничего не выбрано, кнопки были автоматически выключены
 	return new_button
 
 
@@ -188,6 +190,12 @@ func _find_slot_by_item(ref_item: Item) -> int:
 	return -1
 
 
+func _are_buttons_disabled() -> bool:
+	if not action_buttons.is_empty():
+		return action_buttons.all(func(btn: ActionButton) -> bool: return btn.disabled)
+	return true
+
+
 func resize() -> void:
 	slots.resize(storage.capacity)
 
@@ -210,3 +218,5 @@ func _close_inventory() -> void:
 	selected_index = -1
 	selected_button_index = 0
 	pointer.visible = false
+	if not action_buttons.is_empty():
+		action_buttons.map(func(btn: ActionButton) -> void: btn.disabled = true)
