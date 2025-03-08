@@ -77,8 +77,7 @@ func _on_ui_changed(hud_state: PlayerMainHUD.HUD_State) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Interact"):
-		# Временное решение, а так при большем количестве времени я бы централизовала UI, чтобы максимально было эффективно переключаться
-		if player_storage_control.player_inventory.visible == true:
+		if player_main_HUD.current_state == PlayerMainHUD.HUD_State.DOOR_POPUP || player_main_HUD.current_state == PlayerMainHUD.HUD_State.IN_INVENTORY:
 			return
 		var received_text: String = player_movement.is_near_interactable()
 		if received_text != "":

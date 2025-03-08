@@ -87,6 +87,7 @@ func _input(event: InputEvent) -> void:
 			elif event.is_action_pressed("ui_accept"):
 				buttons[selected_index].button_pressed = true
 				buttons[selected_index].emit_signal("pressed")
+		
 
 	# if event.is_action_pressed("Inv"):
 	# 	player_inv.close_and_open_inv()
